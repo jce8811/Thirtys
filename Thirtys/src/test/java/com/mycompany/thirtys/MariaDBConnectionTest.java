@@ -3,7 +3,9 @@ package com.mycompany.thirtys;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+
 
 public class MariaDBConnectionTest {
 	
