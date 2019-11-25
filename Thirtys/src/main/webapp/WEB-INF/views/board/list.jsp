@@ -27,13 +27,17 @@
 						<th>조회수</th>
 					</tr>
 					<c:forEach items="${list}" var="boardVO">
-					<tr>
-						<td>${boardVO.bno}</td>
-						<td><a href="${path}/board/read?bno=${boardVO.bno}">${boardVO.title}</a></td>
-						<td>${boardVO.writer}</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
-						<td>${boardVO.viewcnt}</td>
-					</tr>
+					<c:choose>
+						<c:when test="${boardVO.state == 'R'}">
+							<tr>
+								<td>${boardVO.bno}</td>
+								<td><a href="${path}/board/read?bno=${boardVO.bno}">${boardVO.title}</a></td>
+								<td>${boardVO.writer}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
+								<td>${boardVO.viewcnt}</td>
+							</tr>
+						</c:when>
+					</c:choose>		
 				</c:forEach>
 				</table>
 				
@@ -50,17 +54,15 @@
 	<div id="footer"></div>
 	<!-- //footer -->
 </div>
-
 <!-- script -->
 <script>
-	var result = "${msg}";
-	if(result == "Wsuccess"){
-		alert("작성이 완료되었습니다.");
-	}else if(reuslt == "Msuccess"){
-		alert("수정이 완료되었습니다.");
-	}else if(result == "Dsuccess"){
-		alert("삭제가 완료되었습니다.");
-	}
-</script>
+var result = "${msg}";
+if(result == "Wsuccess"){
+	alert("작성이 완료되었습니다.");
+}else if(result == "Msuccess"){
+	alert("수정이 완료되었습니다.");
+}else if(result == "Dsuccess"){
+	alert("삭제가 완료되었습니다.");
+}</script>
 </body>
 </html>

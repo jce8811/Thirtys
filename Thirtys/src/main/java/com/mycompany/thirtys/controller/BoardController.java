@@ -59,11 +59,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/modify", method = RequestMethod.GET)
-	public void modifyGET(int bno, Model model) throws Exception {
+	public void modifyGET(@RequestParam("bno") int bno, Model model) throws Exception {
 		
 		logger.info("modify GET");
 		model.addAttribute("boardVO", boardService.read(bno));
 	}
+	
 	@RequestMapping(value="/modify", method = RequestMethod.POST)
 	public String modifyPOST(BoardVO boardVO, RedirectAttributes rttr) throws Exception {
 		
@@ -71,6 +72,17 @@ public class BoardController {
 		
 		boardService.modify(boardVO);
 		rttr.addFlashAttribute("msg", "Msuccess");
+		
+		return "redirect:/board/list";
+	}
+	
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	public String delete(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+		
+		logger.info("delete POST");
+		
+		boardService.delete(bno);
+		rttr.addFlashAttribute("msg", "Dsuccess");
 		
 		return "redirect:/board/list";
 	}

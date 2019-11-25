@@ -40,7 +40,7 @@
 			 <div class="btn-box02">
 				 <a class="btn01" href="${path}/board/list">목록</a>
 				 <button type="submit" class="btn-modify">글수정</button>
-				 <button type="submit" class="btn-deleft">글삭제</button>
+				 <button type="submit" class="btn-delete">글삭제</button>
 				 <a
 			 </div>
 			</div>
@@ -57,7 +57,7 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 	$(".btn-delete").on("click", function(){
-		formObj.attr("action", "/board/remove");
+		formObj.attr("action", "/board/delete");
 		formObj.submit();
 	});
 });
