@@ -1,43 +1,75 @@
 @charset "UTF-8";
 
-/* 스킵 내비게이션 */
-#skip {position: relative; }
-#skip a {position : absolute; left: 0px; top: -35px; border: 1px solid #fff; color: #fff; background-color: #333; 
-		line-height: 30px; width: 160px; text-align: center; }
-#skip a:active,
-#skip a:focus {top: 0px;}
 
 /* 레이아웃 */
 #wrap {}
 #header {height: 40px; border-bottom: 1px solid #e6e6e6;}
-#nav {border-bottom: 1px solid #000000;}
+#nav { height: 100px; border-bottom: 1px solid #000000;}
 #board {max-width: 1200px; margin: 0 auto; padding-bottom: 50px; }
-#side {float: left; width: 300px; height: 600px; line-height: 600px; background: #43a047;}
-#content {float: left; width: 700px; height: 600px; line-height: 600px; background: #4caf50;}
+#middle {float: left; width: 700px; height: 1000px; line-height: 1000px; background: #4caf50;}
 #footer {float: left; width: 1000px; height: 100px; line-geight: 600px; background: #66bb6a;}
 
 /* 컨테이너 */
 .container {width: 1200px; margin: 0 auto; height: inherit;}
 
 /* 헤더 */
-.header .header-menu {position: relative; top: 10px; right: 40px; text-align: right;}
-.header .header-menu a {padding: 0px 12px 0px 11px; display: inline-block; font-weight: 800; border-right: 1px solid #ddd; }
+.header .header-menu {position: relative; top: 10px; right: 40px; text-align: right; font-size: 13px;}
+.header .header-menu a {padding: 0px 12px 0px 11px; font-weight: 600; border-right: 1px solid #ddd; }
 
 /* 메뉴 */
-.nav {padding-left: 130px;}
-.nav ul {overflow: hidden; }
-.nav ul li{float: left; width: 20%; }
-.nav ul li a {display: block; width: 100%; height: 91px; line-height: 91px; text-align: center; font-weight: 800;
-    		  font-size: 17px; color: #333; }
+.nav {top: 37px; right: 0; width: 70%; float:right;}
+.nav ul li{ width: 20%; float:left; }
+.nav ul li a {display: block; width: 100%; height: 100px; line-height: 91px; font-weight: 800; font-size: 20px; color: #333; border-right: 1px solid #e6e6e6;
+			  text-align: center;}
+.nav ul li:first-child a {border-left: 1px solid #e6e6e6; }
 
 /* 게시판1 */
-.board-header { position: static; margin: 0; display: block; width: auto;
-    			height: 100px; line-height: 100px; border-bottom: 1px solid #000000;}
-.board-header h2 {text-align: left; font-size: 26px;}
+.board-header { margin: 0; display: block; width: auto; height: 100px; line-height: 100px; border-bottom: 1px solid #000000;}
+.board-header h2 {text-align: left; font-size: 30px;}
 .board-body {padding: 40px 20px 20px;}
 .board-body table {width: 100%; border-collapse: collapse;}
-.board-body tr {}
-.board-body tr th {background: #eaeaea; font-size: 14px; font-weight: 600; color: #000;
+.board-body tr th {background: #eaeaea; font-size: 17px; font-weight: 600; color: #000;
     padding: 20px 0; border-top: 1px solid #b7b7b7; border-bottom: 1px solid #b7b7b7;
     text-align: center;}
-.board-body tr td {padding: 12px 0; border-bottom: 1px solid #b7b7b7; text-align: center;}    		  
+.board-body tr td {padding: 12px 0; border-bottom: 1px solid #b7b7b7; text-align: center; font-size: 15px;}    	
+
+/* 게시판 페이징 */
+.paging1 {position: relative;}
+.paging {text-align: center; margin: 20px 0 15px 0; font-size: 13px;}
+
+/* 게시판 글 작정 */
+.write-body { margin-left: 0; padding: 40px 20px 20px;}
+.write-body .write {padding-right: 0;}
+.write form {width: 100%;}
+.b-title {text-align: left; padding: 5px 0;}
+.b-title input { width: 100%; height: 40px; line-height: 32px;}
+.b-insert {margin-top: 30px;}
+.b-insert textarea {width: 100%; height: 290px; font-size: 20px;}
+
+
+
+/* 공통 버튼 */
+/* 목록용 버튼 */ 
+.btn-box01 { position: absolute; top: 0; right: 0; text-align: right;}
+.btn-box01 .btn01 {width: 65px; height: 28px; line-height: 28px; font-size: 15px; display: inline-block;
+    			 background: #494e56; color: #fff !important; text-align: center; vertical-align: middle;}
+/* 작성용 버튼 */
+.btn-box02 {text-align: right; margin:30px 0;}
+.btn-box02 .btn01 {width: 65px; height: 28px; line-height: 28px; font-size: 15px; display: inline-block;
+    			 background: #7b828e; color: #fff !important; text-align: center; vertical-align: middle;}
+.btn-box02 button { width: 65px; height: 28px; line-height: 28px; font-size: 15px; background: #494e56; color: #fff !important;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  

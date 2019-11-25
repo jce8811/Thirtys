@@ -36,10 +36,17 @@
 					</tr>
 				</c:forEach>
 				</table>
+				
+			<div class="paging1">
+				<div class="paging"></div>
+				<div class="btn-box01"><a class="btn01" href="${path}/board/write">글쓰기</a></div>
 			</div>
+			<!-- //페이징 및 버튼 끝 -->
+			</div>
+			<!-- //게시판리스트 끝 -->
 		</div>
 	</div>
-	<!-- //content -->
+	<!-- //게시판 전체 끝 -->
 	<div id="footer"></div>
 	<!-- //footer -->
 </div>

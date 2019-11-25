@@ -5,19 +5,17 @@
 <head>
 	<title>30's</title>	
 </head>
-<!-- 웹폰트 -->
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Stylish&display=swap" rel="stylesheet">
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <body>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:import url="header/header.jsp"/>
+<c:import url="nav/nav.jsp"/>
 <div id="wrap">
-	<c:import url="header/header.jsp"/>
-	<c:import url="nav/nav.jsp"/>
-	<div id="side">Side</div>
-	<!-- side -->
-	<div id="content">Content</div>
-	<!-- //content -->
-	<div id="footer">Footer</div>
-	<!-- //footer -->
+	<div class="container">
+		<div id="middle">Middle</div>
+		<!-- //content -->
+		<div id="footer">Footer</div>
+		<!-- //footer -->
+	</div>	
 </div>
 <!-- //wrap -->
 </body>

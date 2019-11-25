@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.mycompany.thirtys.mappers.boardMapper">
 	
 	<insert id="create">
-		INSERT INTO tbl_board(bno, title, content, writer, regdate, viewcnt)
-		VALUES ( #{bno}, #{title}, #{writer}, #{regdate}, #{viewcnt})
+		INSERT INTO tbl_board(title, content, writer, regdate, viewcnt)
+		VALUES ( #{title}, #{content}, #{writer}, #{regdate}, #{viewcnt})
 	</insert>
 	
 	<select id="read" resultType="BoardVO">

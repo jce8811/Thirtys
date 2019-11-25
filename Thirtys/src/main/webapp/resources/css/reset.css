@@ -9,9 +9,8 @@ a {color: #222; text-decoration: none;}
 a:hover {color: #390; }
 
 /* 폰트 초기화 */
-body, input, textarea, select, button, table {
-	font-family: 'Nanum Gothic', sans-serif;
-	color: #222; font-size: 13px; line-height: 1.5; }
+body, input, textarea, select, button, table, #wrap {
+	font-family: 'Sunflower', sans-serif; }
 
 /* 폰트 스타일 초기화 */
 em, address {font-style: normal; }
