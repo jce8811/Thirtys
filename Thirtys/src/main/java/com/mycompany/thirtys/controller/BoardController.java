@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mycompany.thirtys.service.BoardService;
@@ -21,6 +22,13 @@ public class BoardController {
 	
 	@Inject
 	BoardService boardService;
+
+	@RequestMapping(value="/list", method = RequestMethod.GET)
+	public void list(Model model) throws Exception {
+		
+		logger.info("list");
+		model.addAttribute("list", boardService.list());
+	}
 	
 	@RequestMapping(value="/write", method = RequestMethod.GET)
 	public void writeGET(BoardVO boardVO, Model model) throws Exception{
@@ -40,10 +48,14 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public void list(Model model) throws Exception {
+	
+	@RequestMapping(value="/read", method = RequestMethod.GET)
+	public String read(@RequestParam("bno") int bno, Model model) throws Exception {
 		
-		logger.info("list");
-		model.addAttribute("list", boardService.list());
+		logger.info("read GET");
+		model.addAttribute("boardVO", boardService.read(bno));
+		
+		return "board/read";
 	}
+	
 }

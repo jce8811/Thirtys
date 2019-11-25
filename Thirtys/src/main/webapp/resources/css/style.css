@@ -39,15 +39,27 @@
 
 /* 게시판 글 작정 */
 .write-body { margin-left: 0; padding: 40px 20px 20px;}
-.write-body .write {padding-right: 0;}
+.write-body .w-write {padding-right: 0;}
 .write form {width: 100%;}
-.b-title {text-align: left; padding: 5px 0;}
-.b-title input { width: 100%; height: 40px; line-height: 32px;}
-.b-insert {margin-top: 30px;}
-.b-insert textarea {width: 100%; height: 290px; font-size: 20px;}
+.w-title {text-align: left; padding: 5px 0;}
+.w-title input { width: 100%; height: 40px; line-height: 32px;}
+.w-insert {margin-top: 30px;}
+.w-insert textarea {width: 100%; height: 290px; font-size: 20px;}
 
-
-
+/* 게시판 글 보기 */
+.read-body { margin-left: 0; padding: 40px 20px 20px;}
+.read {padding-right: 0;}
+.r-header {overflow: hidden; background: #eaeaea; color: #000; font-size: 14px;
+    	   font-weight: 600; padding: 15px 0; border-top: 1px solid #b7b7b7;
+    	   border-bottom: 1px solid #b7b7b7;}
+.r-header p.r-title {float: left; padding-left: 40px; font-size: 17px;
+    			   margin: 10px 0 0;}
+.r-header p.r-info {float: right; width: 150px; padding-right: 20px;
+    				color: #777; text-align: center;}	
+.r-body {position: relative; padding: 24px 42px 40px 42px; min-height: 360px;
+    	 border-bottom: 1px solid #b7b7b7;}
+.r-body .r-content {margin-bottom: 30px; width: 100%; line-height: 1.7em;
+    				word-break: break-all; overflow: hidden;}	
 /* 공통 버튼 */
 /* 목록용 버튼 */ 
 .btn-box01 { position: absolute; top: 0; right: 0; text-align: right;}
@@ -58,6 +70,11 @@
 .btn-box02 .btn01 {width: 65px; height: 28px; line-height: 28px; font-size: 15px; display: inline-block;
     			 background: #7b828e; color: #fff !important; text-align: center; vertical-align: middle;}
 .btn-box02 button { width: 65px; height: 28px; line-height: 28px; font-size: 15px; background: #494e56; color: #fff !important;}
+
+/* 보기용 버튼 */
+.btn-box02 .btn02 {width: 65px; height: 28px; line-height: 28px; font-size: 15px; display: inline-block;
+    			 background: #494e56; color: #fff !important; text-align: center; vertical-align: middle;}
+
 
 
 

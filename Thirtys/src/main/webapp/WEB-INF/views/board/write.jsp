@@ -19,13 +19,13 @@
 			<div class="write-body">
 				<div class="write">
 				<form role="form" id="writeForm" method="post" action="${path}/board/write">
-					<div class="b-writer">
+					<div class="w-writer">
 						<input type="text" id="writer" name="writer" placeholder="작성자">
 					</div>
-					<div class="b-title">
+					<div class="w-title">
 						<input type="text" id="title" name="title" placeholder="제목">
 					</div>
-					<div class="b-insert">
+					<div class="w-insert">
 						<textarea id="content" name="content" rows="30" placeholder="내용"></textarea>
 					</div>
 					<div class="btn-box02">
