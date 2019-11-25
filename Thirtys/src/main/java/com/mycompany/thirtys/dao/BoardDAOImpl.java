@@ -18,8 +18,8 @@ public class BoardDAOImpl implements BoardDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public void create(BoardVO boardVO) throws Exception {
-		sqlSession.insert(NAEMSPACE + ".create", boardVO);
+	public void write(BoardVO boardVO) throws Exception {
+		sqlSession.insert(NAEMSPACE + ".write", boardVO);
 
 	}
 
@@ -29,8 +29,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void update(BoardVO boardVO) throws Exception {
-		sqlSession.update(NAEMSPACE + ".update", boardVO);
+	public void modify(BoardVO boardVO) throws Exception {
+		sqlSession.update(NAEMSPACE + ".modify", boardVO);
 
 	}
 

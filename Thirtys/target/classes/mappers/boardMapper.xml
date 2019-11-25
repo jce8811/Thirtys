@@ -5,28 +5,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.mycompany.thirtys.mappers.boardMapper">
 	
-	<insert id="create">
+	<!-- 글 작성 -->
+	<insert id="write">
 		INSERT INTO tbl_board(title, content, writer, regdate, viewcnt)
 		VALUES ( #{title}, #{content}, #{writer}, #{regdate}, #{viewcnt})
 	</insert>
 	
+	<!-- 글 조회 -->
 	<select id="read" resultType="BoardVO">
 		SELECT bno, title, content, writer, regdate, viewcnt
 		FROM tbl_board
 		WHERE bno = #{bno}
 	</select>
 	
-	<update id="update">
+	<!-- 글 수정 -->
+	<update id="modify">
 		UPDATE tbl_board
 		SET title = #{title}, content = #{content}
 		WHERE bno = #{bno}
 	</update>
 	
+	<!-- 글 삭제 -->
 	<delete id="delete">
 		DELETE FROM tbl_board
 		WHERE bno = #{bno}
 	</delete>
 	
+	<!-- 글리스트 조회 -->
 	<select id="list" resultType="BoardVO">
 	<![CDATA[
 		SELECT bno, title, content, writer, regdate, viewcnt

@@ -6,6 +6,7 @@
 <!-- CSS -->
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <div id="header">
 	<div class="container">
 		<div class="header">
@@ -17,4 +18,5 @@
 		</div>
 	</div>
 </div>
+<script src="${path}/resources/js/jquery.min_1.12.4.js"></script>
 <!-- //header -->

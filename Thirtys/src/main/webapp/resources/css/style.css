@@ -72,8 +72,9 @@
 .btn-box02 button { width: 65px; height: 28px; line-height: 28px; font-size: 15px; background: #494e56; color: #fff !important;}
 
 /* 보기용 버튼 */
-.btn-box02 .btn02 {width: 65px; height: 28px; line-height: 28px; font-size: 15px; display: inline-block;
-    			 background: #494e56; color: #fff !important; text-align: center; vertical-align: middle;}
+button .btn-modify {width: 65px; height: 28px; line-height: 28px; font-size: 15px; background: #494e56; color: #fff !important;}
+button .btn-delete {width: 65px; height: 28px; line-height: 28px; font-size: 15px; background: #494e56; color: #fff !important;}
+
 
 
 

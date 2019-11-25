@@ -16,8 +16,8 @@ public class BoardServiceImpl implements BoardService {
 	BoardDAO boardDAO;
 
 	@Override
-	public void create(BoardVO boardVO) throws Exception {
-		boardDAO.create(boardVO);
+	public void write(BoardVO boardVO) throws Exception {
+		boardDAO.write(boardVO);
 
 	}
 
@@ -27,8 +27,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void update(BoardVO boardVO) throws Exception {
-		boardDAO.update(boardVO);
+	public void modify(BoardVO boardVO) throws Exception {
+		boardDAO.modify(boardVO);
 
 	}
 

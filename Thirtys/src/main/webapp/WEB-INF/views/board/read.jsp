@@ -34,13 +34,33 @@
 							</div>
 						</div>
 				</div>
+				<form role="form" method="post">
+					<input type="hidden" name="bno" value="${boardVO.bno}">
+				</form>
 			 <div class="btn-box02">
 				 <a class="btn01" href="${path}/board/list">목록</a>
-				 <a class="btn02" href="${path}/board/write">글쓰기</a>
+				 <button type="submit" class="btn-modify">글수정</button>
+				 <button type="submit" class="btn-deleft">글삭제</button>
+				 <a
 			 </div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+	var formObj = $("form[role='form']");
+	console.log(formObj);
+	$(".btn-modify").on("click", function(){
+		formObj.attr("action", "/board/modify");
+		formObj.attr("method", "get");
+		formObj.submit();
+	});
+	$(".btn-delete").on("click", function(){
+		formObj.attr("action", "/board/remove");
+		formObj.submit();
+	});
+});
+</script>
 </body>
 </html>

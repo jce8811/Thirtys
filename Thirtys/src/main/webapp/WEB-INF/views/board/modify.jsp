@@ -18,20 +18,21 @@
 			</div>
 			<div class="write-body">
 				<div class="write">
-				<form role="form" id="writeForm" method="post" action="${path}/board/write">
+				<form role="form" id="writeForm" method="post" action="${path}/board/modify">
+				<input type="hidden" name="bno" value="${boardVO.bno}">
 					<div class="w-writer">
-						<input type="text" id="writer" name="writer" placeholder="작성자">
+						<input type="text" id="writer" name="writer" placeholder="작성자" value="${boardVO.writer}">
 					</div>
 					<div class="w-title">
-						<input type="text" id="title" name="title" placeholder="제목">
+						<input type="text" id="title" name="title" placeholder="제목" value="${boardVO.title}">
 					</div>
 					<div class="w-insert">
-						<textarea id="content" name="content" rows="30" placeholder="내용"></textarea>
+						<textarea id="content" name="content" rows="30" placeholder="내용">${boardVO.content}</textarea>
 					</div>
 					<div class="btn-box02">
 					<a class="btn01" href="${path}/board/list">목록</a>
 					<button type="reset">초기화</button>
-					<button type="submit">작성</button>
+					<button type="submit">수정완료</button>
 					</div>
 				</form>
 				</div>
@@ -39,6 +40,5 @@
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

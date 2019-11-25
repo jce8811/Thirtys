@@ -42,9 +42,9 @@ public class BoardController {
 		logger.info("write POST");
 		logger.info(boardVO.toString());
 		
-		boardService.create(boardVO);
+		boardService.write(boardVO);
 		
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "Wsuccess");
 		
 		return "redirect:/board/list";
 	}
@@ -58,4 +58,20 @@ public class BoardController {
 		return "board/read";
 	}
 	
+	@RequestMapping(value="/modify", method = RequestMethod.GET)
+	public void modifyGET(int bno, Model model) throws Exception {
+		
+		logger.info("modify GET");
+		model.addAttribute("boardVO", boardService.read(bno));
+	}
+	@RequestMapping(value="/modify", method = RequestMethod.POST)
+	public String modifyPOST(BoardVO boardVO, RedirectAttributes rttr) throws Exception {
+		
+		logger.info("modify POST");
+		
+		boardService.modify(boardVO);
+		rttr.addFlashAttribute("msg", "Msuccess");
+		
+		return "redirect:/board/list";
+	}
 }
