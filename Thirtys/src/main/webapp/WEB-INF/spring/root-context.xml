@@ -14,7 +14,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="url" value="jdbc:mariadb://127.0.0.1:3306/thirtys"></property>
+		<property name="url" value="jdbc:mariadb://localhost:3306/thirtys"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="8811"></property>
 	</bean>
@@ -28,5 +28,6 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
-	<context:component-scan base-package="com.mycompany.thirtys.service.dao"></context:component-scan>	
+	<context:component-scan base-package="com.mycompany.thirtys.dao"/>
+	<context:component-scan base-package="com.mycompany.thirtys.service"/>		
 </beans>
