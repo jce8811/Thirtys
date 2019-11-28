@@ -12,8 +12,8 @@
 		<div class="header">
 			<div class="header-menu">
 				<a href="">홈페이지 소개</a>
-				<a href="">로그인</a>
-				<a href="" style="color: #3d449c;">회원가입</a>
+				<a href="${path}/user/login">로그인</a>
+				<a href="${path}/user/join" style="color: #3d449c;">회원가입</a>
 			</div>
 		</div>
 	</div>
