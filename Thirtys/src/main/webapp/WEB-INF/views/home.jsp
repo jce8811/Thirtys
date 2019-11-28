@@ -7,9 +7,9 @@
 </head>
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<div id="wrap">
 <c:import url="header/header.jsp"/>
 <c:import url="nav/nav.jsp"/>
-<div id="wrap">
 	<div class="container">
 		<div id="middle">Middle</div>
 		<!-- //content -->

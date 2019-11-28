@@ -22,8 +22,8 @@
 					<tr>
 						<th width=50>No</th>
 						<th width=600>글제목</th>
-						<th>글쓴이</th>
-						<th>글작성시간</th>
+						<th width=100>글쓴이</th>
+						<th width=100>글작성시간</th>
 						<th>조회수</th>
 					</tr>
 					<c:forEach items="${list}" var="boardVO">
@@ -31,12 +31,21 @@
 						<c:when test="${boardVO.state == 'R'}">
 							<tr>
 								<td>${boardVO.bno}</td>
-								<td><a href="${path}/board/read?bno=${boardVO.bno}">${boardVO.title}</a></td>
+								<td><a href="${path}/board/readPage${pageMaker.makeQuery(pageMaker.cri.page)}&bno=${boardVO.bno}">${boardVO.title}</a></td>
 								<td>${boardVO.writer}</td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
 								<td>${boardVO.viewcnt}</td>
 							</tr>
 						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>${boardVO.bno}</td>
+								<td><strong style="color: #FF0000;">-삭제된 게시글 입니다.-</strong></td>
+								<td>${boardVO.writer}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
+								<td>${boardVO.viewcnt}</td>
+							</tr>
+						</c:otherwise>
 					</c:choose>		
 				</c:forEach>
 				</table>
@@ -45,16 +54,24 @@
 				<div class="paging">
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev}">
-							<li><a href="${path}/board/listPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
+							<li><a href="listPage${pageMaker.makeQuery(pageMaker.startPage -1) }" style="color: #3d449c; font-weight: 600;">이전</a></li> 
+							<%-- <li><a href="${pageMaker.startPage -1}" style="color: #3d449c; font-weight: 600;">이전</a></li> --%>
 						</c:if>
 						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-							<li <c:out value="${pageMaker.cri.page == idx?'class = active':''}"/>>
-							<a href="${path}/board/listPage?page=${idx}">${idx}</a></li>
+							<li <c:out value="${pageMaker.cri.page == idx ?'class = active':''}"/>>
+							<a href="listPage${pageMaker.makeQuery(idx)}">${idx}</a></li>
+							<%-- <a href="${idx}">${idx}</a> --%>
 						</c:forEach>
+						
 						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-							<li><a href="${path}/board/listPage?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
+							<li><a href="listPage${pageMaker.makeQuery(pageMaker.endPage +1) }" style="color: #3d449c; font-weight: 600;">다음</a></li> 
+							<%-- <li><a href="${pageMaker.endPage +1}" style="color: #3d449c; font-weight: 600;">다음</a></li> --%>
 						</c:if>
 					</ul>
+					<form id="listPageForm">
+						<input type="hidden" name="page" value="${pageMaker.cri.page}">
+						<input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}">
+					</form>
 				</div>
 				<div class="btn-box01"><a class="btn01" href="${path}/board/write">글쓰기</a></div>
 			</div>
@@ -76,6 +93,8 @@ if(result == "Wsuccess"){
 	alert("수정이 완료되었습니다.");
 }else if(result == "Dsuccess"){
 	alert("삭제가 완료되었습니다.");
-}</script>
+}
+
+</script>
 </body>
 </html>

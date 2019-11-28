@@ -6,7 +6,8 @@ th,td,tr,textarea,button,form{margin: 0; padding: 0;}
 
 /* a 링크 초기화 */
 a {color: #222; text-decoration: none;}
-a:hover {color: #390; }
+a:hover { color: #3d449c;}
+ul li a:hover { color: #3d449c;}
 
 /* 폰트 초기화 */
 body, input, textarea, select, button, table, #wrap {

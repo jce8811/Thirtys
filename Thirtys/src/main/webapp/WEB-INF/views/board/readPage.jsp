@@ -36,12 +36,14 @@
 				</div>
 				<form role="form" method="post">
 					<input type="hidden" name="bno" value="${boardVO.bno}">
+					<input type="text" name="page" value="${cri.page}">
+					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 				</form>
 			 <div class="btn-box02">
-				 <a class="btn01" href="${path}/board/listPage">목록</a>
+				 <button type="submit" class="btn-list">목록</a>
 				 <button type="submit" class="btn-modify">글수정</button>
 				 <button type="submit" class="btn-delete">글삭제</button>
-				 <a
+				 
 			 </div>
 			</div>
 		</div>
@@ -58,6 +60,11 @@ $(document).ready(function(){
 	});
 	$(".btn-delete").on("click", function(){
 		formObj.attr("action", "/board/deletePage");
+		formObj.submit();
+	});
+	$(".btn-list").on("click", function(){
+		formObj.attr("method", "get");
+		formObj.attr("action", "/board/listPage");
 		formObj.submit();
 	});
 });

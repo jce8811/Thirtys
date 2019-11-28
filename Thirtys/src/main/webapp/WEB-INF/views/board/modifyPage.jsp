@@ -18,7 +18,7 @@
 			</div>
 			<div class="write-body">
 				<div class="write">
-				<form role="form" id="writeForm" method="post" action="${path}/board/modify">
+				<form role="form" id="writeForm" method="post" action="${path}/board/modifyPage">
 				<input type="hidden" name="bno" value="${boardVO.bno}">
 					<div class="w-writer">
 						<input type="text" id="writer" name="writer" placeholder="작성자" value="${boardVO.writer}">
@@ -30,7 +30,9 @@
 						<textarea id="content" name="content" rows="30" placeholder="내용">${boardVO.content}</textarea>
 					</div>
 					<div class="btn-box02">
-					<a class="btn01" href="${path}/board/listPage">목록</a>
+					<input type="hidden" name="page" value="${cri.page}">
+					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+					<a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
 					<button type="reset">초기화</button>
 					<button type="submit">수정완료</button>
 					</div>

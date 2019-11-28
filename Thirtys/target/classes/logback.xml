@@ -2,14 +2,10 @@
 <configration>
 	<include resource="org/springframework/boot/logging/logback/base.xml"></include>
 	<!-- log4jdbc-log4j2 -->
-	<logger>
 	<logger name="jdbc.sqlonly" level="DEBUG"/>
 	<logger name="jdbc.sqltiming" level="INFO"/>
 	<logger name="jdbc.audit" level="WARN"/>
 	<logger name="jdbc.resultset" level="ERROR"/>
 	<logger name="jdbc.resultsettable" level="ERROR"/>
 	<logger name="jdbc.connection" level="INFO"/>
-	</logger>
-	
-	
 </configration>
