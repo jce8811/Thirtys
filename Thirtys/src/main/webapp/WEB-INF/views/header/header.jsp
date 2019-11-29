@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!-- 웹 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
@@ -12,8 +11,14 @@
 		<div class="header">
 			<div class="header-menu">
 				<a href="">홈페이지 소개</a>
+				<c:if test="${empty login}">
 				<a href="${path}/user/login">로그인</a>
 				<a href="${path}/user/join" style="color: #3d449c;">회원가입</a>
+				</c:if>
+				<c:if test="${not empty login}">
+				<a href="#">마이페이지(${login.uname}님)</a>
+				<a href="#">로그아웃</a>
+				</c:if>
 			</div>
 		</div>
 	</div>

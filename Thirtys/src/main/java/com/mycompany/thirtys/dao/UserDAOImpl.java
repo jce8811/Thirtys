@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.thirtys.vo.LoginDTO;
 import com.mycompany.thirtys.vo.UserVO;
 
 @Repository
@@ -25,4 +26,9 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	@Override
+	public UserVO login(LoginDTO loginDTO) throws Exception {
+		return sqlSession.selectOne(namespace + ".login", loginDTO);
+	}
+	
 }

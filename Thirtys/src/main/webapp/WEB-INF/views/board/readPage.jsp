@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +35,7 @@
 				</div>
 				<form role="form" method="post">
 					<input type="hidden" name="bno" value="${boardVO.bno}">
-					<input type="text" name="page" value="${cri.page}">
+					<input type="hidden" name="page" value="${cri.page}">
 					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 				</form>
 			 <div class="btn-box02">

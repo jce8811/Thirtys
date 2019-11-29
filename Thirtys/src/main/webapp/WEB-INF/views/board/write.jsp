@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -20,7 +19,7 @@
 				<div class="write">
 				<form role="form" id="writeForm" method="post" action="${path}/board/write">
 					<div class="w-writer">
-						<input type="text" id="writer" name="writer" placeholder="작성자">
+						<input type="text" id="writer" name="writer" value="${login.uemail}" readonly>
 					</div>
 					<div class="w-title">
 						<input type="text" id="title" name="title" placeholder="제목">

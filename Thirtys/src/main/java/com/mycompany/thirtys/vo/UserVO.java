@@ -7,8 +7,6 @@ public class UserVO {
 	private String upw;
 	private String uname;
 	private int upoint;
-	private String uaddr1;
-	private String uaddr2;
 	private Date udate;
 	
 	public String getUemail() {
@@ -35,18 +33,6 @@ public class UserVO {
 	public void setUpoint(int upoint) {
 		this.upoint = upoint;
 	}
-	public String getUaddr1() {
-		return uaddr1;
-	}
-	public void setUaddr1(String uaddr1) {
-		this.uaddr1 = uaddr1;
-	}
-	public String getUaddr2() {
-		return uaddr2;
-	}
-	public void setUaddr2(String uaddr2) {
-		this.uaddr2 = uaddr2;
-	}
 	public Date getUdate() {
 		return udate;
 	}
@@ -56,8 +42,7 @@ public class UserVO {
 	
 	@Override
 	public String toString() {
-		return "UserVO [uemail=" + uemail + ", upw=" + upw + ", uname=" + uname + ", upoint=" + upoint + ", uaddr1="
-				+ uaddr1 + ", uaddr2=" + uaddr2 + ", udate=" + udate + "]";
+		return "UserVO [uemail=" + uemail + ", upw=" + upw + ", uname=" + uname + ", upoint=" + upoint + ", udate=" + udate + "]";
 	}
 	
 }

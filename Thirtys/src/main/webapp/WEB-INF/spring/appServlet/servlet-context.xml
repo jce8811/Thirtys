@@ -21,6 +21,25 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Interceptor -->
+	<beans:bean id="LoginInterceptor" class="com.mycompany.thirtys.commons.LoginInterceptor"/>
+	<beans:bean id="AuthInterceptor" class="com.mycompany.thirtys.commons.AuthInterceptor"/>
+	<interceptors>
+		
+		<interceptor>
+			<mapping path="/user/loginPOST"/>
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/board/write"/>
+			<mapping path="/board/modifyPage"/>
+			<mapping path="/board/deletePage"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+	</interceptors>
+		
 	<context:component-scan base-package="com.mycompany.thirtys" />
 	
 	

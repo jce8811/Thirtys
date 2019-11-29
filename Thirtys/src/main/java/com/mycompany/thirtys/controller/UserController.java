@@ -45,10 +45,4 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 	
-	// 로그인 페이지
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void LoginGET() throws Exception {
-		
-		logger.info("login GET");
-	}
 }

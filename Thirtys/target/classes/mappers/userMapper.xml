@@ -9,4 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO tbl_user (uemail, upw, uname)
 		VALUES	( #{uemail}, #{upw}, #{uname})
 	</insert>
+	
+	<select id="login" resultType="UserVO">
+		SELECT *
+		FROM tbl_user
+		WHERE uemail = #{uemail} 
+	</select>
 </mapper>
