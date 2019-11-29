@@ -24,6 +24,8 @@
 	<!-- Interceptor -->
 	<beans:bean id="LoginInterceptor" class="com.mycompany.thirtys.commons.LoginInterceptor"/>
 	<beans:bean id="AuthInterceptor" class="com.mycompany.thirtys.commons.AuthInterceptor"/>
+	<beans:bean id="RememberInterceptor" class="com.mycompany.thirtys.commons.RememberInterceptor"/>
+	<beans:bean id="LoginAfterInterceptor" class="com.mycompany.thirtys.commons.LoginAfterInterceptor"/>
 	<interceptors>
 		
 		<interceptor>
@@ -36,6 +38,17 @@
 			<mapping path="/board/modifyPage"/>
 			<mapping path="/board/deletePage"/>
 			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/**/"/>
+			<beans:ref bean="RememberInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/user/login"/>
+			<mapping path="/user/join"/>
+			<beans:ref bean="LoginAfterInterceptor"/>
 		</interceptor>
 		
 	</interceptors>

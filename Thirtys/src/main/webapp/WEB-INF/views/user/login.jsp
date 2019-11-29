@@ -24,6 +24,13 @@
 						<input type="text" name="uemail" class="uemail" placeholder="이메일">
 						<input type="password" name="upw" class="upw" placeholder="비밀번호">
 					</fieldset>
+					
+					<p class="checkbox" style="margin-top: 15px;">
+						<label>
+							<input type="checkbox" name="useCookie">
+							<span style="font-weight: 600;">로그인유지</span>
+						</label>
+					</p>
 					<div class="find">
 						<a>아이디 비밀번호 찾기</a>
 					</div>

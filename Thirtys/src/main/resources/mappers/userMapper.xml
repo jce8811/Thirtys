@@ -15,4 +15,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM tbl_user
 		WHERE uemail = #{uemail} 
 	</select>
+	
+	<update id="keepLogin">
+		UPDATE tbl_user
+		SET usessionkey = #{sessionId}, usessionlimit = #{next}
+		WHERE uemail = #{uemail}
+	</update>
+	
+	<select id="checkWithSessionKey" resultType="UserVO">
+		SELECT *
+		FROM tbl_user
+		WHERE usessionkey = #{value} and usessionlimit > now()
+	</select>
 </mapper>

@@ -4,7 +4,7 @@ public class LoginDTO {
 	
 	private String uemail;
 	private String upw;
-	private boolean userCookie;
+	private boolean useCookie;
 	
 	public String getUemail() {
 		return uemail;
@@ -19,15 +19,15 @@ public class LoginDTO {
 		this.upw = upw;
 	}
 	public boolean isUserCookie() {
-		return userCookie;
+		return useCookie;
 	}
 	public void setUserCookie(boolean userCookie) {
-		this.userCookie = userCookie;
+		this.useCookie = userCookie;
 	}
 	
 	@Override
 	public String toString() {
-		return "UserDTO [uemail=" + uemail + ", upw=" + upw + ", userCookie=" + userCookie + "]";
+		return "UserDTO [uemail=" + uemail + ", upw=" + upw + ", useCookie=" + useCookie + "]";
 	}
 		
 }

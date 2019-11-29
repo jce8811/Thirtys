@@ -17,7 +17,7 @@
 				</c:if>
 				<c:if test="${not empty login}">
 				<a href="#">마이페이지(${login.uname}님)</a>
-				<a href="#">로그아웃</a>
+				<a href="${path}/user/logout">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
