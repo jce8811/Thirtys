@@ -19,7 +19,7 @@
 				<div class="write">
 				<form role="form" id="writeForm" method="post" action="${path}/board/write">
 					<div class="w-writer">
-						<input type="text" id="writer" name="writer" value="${login.uemail}" readonly>
+						<input type="hidden" id="writer" name="writer" value="${login.uname}" readonly>
 					</div>
 					<div class="w-title">
 						<input type="text" id="title" name="title" placeholder="제목">
@@ -28,12 +28,12 @@
 						<textarea id="content" name="content" rows="30" placeholder="내용"></textarea>
 					</div>
 					<div class="btn-box02">
-					<input type="hidden" name="bno" value="${boardVO.bno}">
-					<input type="hidden" name="page" value="${cri.page}">
-					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
-					<a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
-					<button type="reset">초기화</button>
-					<button type="submit">작성</button>
+						<input type="hidden" name="bno" value="${boardVO.bno}">
+						<input type="hidden" name="page" value="${cri.page}">
+						<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+						<a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
+						<button type="reset">초기화</button>
+						<button type="submit">작성</button>
 					</div>
 				</form>
 				</div>

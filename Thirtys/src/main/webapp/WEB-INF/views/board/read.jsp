@@ -36,12 +36,15 @@
 				</div>
 				<form role="form" method="post">
 					<input type="hidden" name="bno" value="${boardVO.bno}">
+					<input type="hidden" name="page" value="${cri.page}">
+					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 				</form>
 			 <div class="btn-box02">
-				 <a class="btn01" href="${path}/board/listPage">목록</a>
+				 <a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
+			 <c:if test="${login.uname == boardVO.writer}"> 
 				 <button type="submit" class="btn-modify">글수정</button>
 				 <button type="submit" class="btn-delete">글삭제</button>
-				 <a
+			 </c:if>	 
 			 </div>
 			</div>
 		</div>

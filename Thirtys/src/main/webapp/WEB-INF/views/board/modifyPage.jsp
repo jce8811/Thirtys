@@ -20,7 +20,7 @@
 				<form role="form" id="writeForm" method="post" action="${path}/board/modifyPage">
 				<input type="hidden" name="bno" value="${boardVO.bno}">
 					<div class="w-writer">
-						<input type="text" id="writer" name="writer" placeholder="작성자" value="${boardVO.writer}">
+						<input type="hidden" id="writer" name="writer" placeholder="작성자" value="${boardVO.writer}">
 					</div>
 					<div class="w-title">
 						<input type="text" id="title" name="title" placeholder="제목" value="${boardVO.title}">

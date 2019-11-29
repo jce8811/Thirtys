@@ -39,9 +39,11 @@
 					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 				</form>
 			 <div class="btn-box02">
-				 <button type="submit" class="btn-list">목록</a>
+				 <a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
+				 <c:if test="${login.uname == boardVO.writer}"> 
 				 <button type="submit" class="btn-modify">글수정</button>
 				 <button type="submit" class="btn-delete">글삭제</button>
+				 </c:if>
 				 
 			 </div>
 			</div>
@@ -59,11 +61,6 @@ $(document).ready(function(){
 	});
 	$(".btn-delete").on("click", function(){
 		formObj.attr("action", "/board/deletePage");
-		formObj.submit();
-	});
-	$(".btn-list").on("click", function(){
-		formObj.attr("method", "get");
-		formObj.attr("action", "/board/listPage");
 		formObj.submit();
 	});
 });
