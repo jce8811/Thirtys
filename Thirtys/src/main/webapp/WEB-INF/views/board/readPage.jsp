@@ -38,6 +38,13 @@
 					<ul id="reply">
 		
 					</ul>
+					<div class="paging1">
+						<div class="paging">
+							<ul class="pagination">
+							
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class="reply-write">
 					<div class="reply-form">
@@ -74,6 +81,17 @@
 				 
 			 </div>
 			</div>
+<div id="modBox" style="display:none;">
+	<div class="modal-title"></div>
+	<div>
+		<input type="text" id="rcont">
+	</div>
+	<div>
+		<button type="button" id="replyModBtn">수정</button>
+		<button type="button" id="replyDelBtn">삭제</button>
+		<button type="button" id="closeBtn">닫기</button>
+	</div>
+</div>
 		</div>
 	</div>
 </div>
@@ -91,7 +109,6 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 });
-
 //댓글 목록 출력 함수
 function getAllList(){
 
@@ -102,13 +119,19 @@ function getAllList(){
 		
 		$(data).each(function(){
 				str += "<li data-rno='"+this.rno+"' class='replyLi'>"
-					+ this.rno + ":" + this.rcontent + "</li>";
-			});
+					+ "<p class='rcontent'>" + this.rcontent + "</p>"
+					+ "<p class='rwriter'>" + this.rwriter + "</p>"  
+					+ "<button>수정</button>"
+					+ "</li>"
+					+ "<hr/>";
+			});		
 		$("#reply").html(str);
 	});
 }
 
+var bno = 8177;
 getAllList();
+getPageList(1);
 $("#replyAddBtn").on("click", function(){
 	var bno = 8177;
 	var rwriter = $("#rwriter").val();
@@ -135,6 +158,58 @@ $("#replyAddBtn").on("click", function(){
 		}
 	});
 });
+
+$("#reply").on("click", ".replyLi button", function(){
+	var reply = $(this).parent();
+	
+	var rno = reply.attr("data-rno");
+	var rcontent = reply.text();
+	
+	$(".modal-title").html(rno);
+	$("#rcont").val(rcontent);
+	$("#modBox").show("slow");
+});
+
+function getPageList(page){
+	$.getJSON("/reply/"+bno+"/"+page, function(data){
+		console.log(data.list.length);
+		
+		var str = "";
+		
+		$(data.list).each(function(){
+			str += "<li data-rno='"+this.rno+"' class='replyLi'>"
+				+ "<p class='rcontent'>" + this.rcontent + "</p>"
+				+ "<p class='rwriter'>" + this.rwriter + "</p>"  
+				+ "<button>수정</button>"
+				+ "</li>"
+				+ "<hr/>";
+		});
+		$("#reply").html(str);
+		printPaging(data.pageMaker);
+	});
+}
+function printPaging(pageMaker) {
+	var str = "";
+	
+	if(pageMaker.prev) {
+		str += "<li><a href='"+(pageMaker.startPage-1)+ "'> << </a></li>";
+	}
+	for(var i=pageMaker.startPage, len = pageMaker.endPage; i <= len; i++){
+		var strClass = pageMaker.cri.page == i?'class=active':'';
+		str += "<li "+strClass+"><a href='"+i+"'>"+i+"</a></li>";
+	}
+	if(pageMaker.next){
+		str += "<li><a href='"+(pageMaker.endPage + 1)+"'> >> </a></li>";
+	}
+	$('.pagination').html(str);
+}
+var replyPage = 1;
+$(".pagination").on("click", "li a", function(event){
+	event.preventDefault();
+	replyPage = $(this).attr("href");
+	getPageList(replyPage);
+});
+
 </script>
 </body>
 </html>

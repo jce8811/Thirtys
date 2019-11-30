@@ -165,7 +165,16 @@ background: transparent;
     letter-spacing: -0.1em;
     cursor: pointer;
 	
-}    			   
+}    			 
+
+/* 댓글 수정 모달 */
+#modBox {
+	width: 300px; height: 100px; background-color : gray; position: absolute;
+	top : 100%; left: 50%; margin-top: -50px; margin-left: -150px; padding: 10px;
+	
+	
+}
+  
 /* 공통 버튼 */
 /* 목록용 버튼 */ 
 .btn-box01 { position: absolute; top: 0; right: 0; text-align: right;}
