@@ -65,14 +65,23 @@
     line-height: 16px;
     font-weight: 600;
 }
-.user-form .find {
-    margin: 40px 250px;
-    font-size: 16px;
+.user-form .find { margin: 40px 250px; font-size: 16px;}
+
+/* 회원 마이페이지 */
+/*사이드바*/
+.user-side ul { margin: 40px 0 0 0; width: 200px;}
+.user-side li {font-size: 13px; letter-spacing: -0.5pt;}
+.user-side li a {display: block; padding-left: 15px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
 }
-.
-user-form. .checkbox_login .input {
-	
-}
+.user-side li a:hover {color: #3d449c; background: LightGrey;}
+.info-side {width: 108%; margin-top: 20px;}
+.info-side .myimg {border: 1px solid black; height: 200px; margin: 5px;}
+
 /* 게시판1 */
 .board-header { margin: 0; display: block; width: auto; height: 100px; line-height: 100px; border-bottom: 1px solid #000000;}
 .board-header h2 {text-align: left; font-size: 30px;}
@@ -115,6 +124,48 @@ user-form. .checkbox_login .input {
 .paging { text-align: center; margin: 20px 0 15px 0; font-size: 17px;}
 .pagination li { display: inline-block; padding: 5px;}
 .pagination li a:hover {color: #3d449c;}
+
+/* 댓글  */
+.reply { margin: 0 0 20px; padding: 20px 20px 10px; border: 1px solid #e5e8ec;
+    	 background: #f5f8f9; }
+.reply h2 {margin-bottom: 10px;}
+.reply-form table {width: 100%; border-collapse: collapse;
+    			   border-spacing: 0;}
+.reply-form th {    width: 70px;
+    padding: 7px 13px;
+    border: 1px solid #e9e9e9;
+    border-left: 0;
+    background: #f5f8f9;
+    text-align: left;}
+.reply-form td {
+padding: 7px 10px;
+border-top: 1px solid #e9e9e9;
+border-bottom: 1px solid #e9e9e9;
+background: transparent;
+}
+.reply-form textarea {
+	width: 98%;
+    height: 100px;
+        font-size: 15px;
+        border: 1px solid #e4eaec;
+    background: #f7f7f7;
+    color: #000;
+    vertical-align: middle;
+    line-height: 2em;
+}
+.btn-reply {
+	margin-top: 15px;
+    text-align: center;
+}
+.reply-button{
+	padding: 8px;
+    border: 0;
+    background: #ff3061;
+    color: #fff;
+    letter-spacing: -0.1em;
+    cursor: pointer;
+	
+}    			   
 /* 공통 버튼 */
 /* 목록용 버튼 */ 
 .btn-box01 { position: absolute; top: 0; right: 0; text-align: right;}

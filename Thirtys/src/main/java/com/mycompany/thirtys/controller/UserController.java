@@ -45,4 +45,17 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 	
+	// 회원정보 페이지
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public void infoGET() throws Exception {
+		
+		logger.info("info GET");
+	}
+	
+	// 내가 쓴글 페이지
+	@RequestMapping(value = "/mywrite", method = RequestMethod.GET)
+	public void mywriteGET() throws Exception {
+		
+		logger.info("mywrite GET");
+	}
 }

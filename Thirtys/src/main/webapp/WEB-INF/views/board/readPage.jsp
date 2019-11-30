@@ -33,6 +33,33 @@
 							</div>
 						</div>
 				</div>
+				<div class="reply">
+					<h2>댓글 목록</h2>
+					<ul id="reply">
+		
+					</ul>
+				</div>
+				<div class="reply-write">
+					<div class="reply-form">
+						<table>
+						<tr>
+							<th>작성자</th>
+							<td>
+							<input type="text" name="rwriter" id="rwriter">
+							</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td>
+							<textarea id="rcontent" name="rcontent" maxlength="10000" title="내용" required></textarea>
+							</td>
+						</tr>
+						</table>
+					</div>			
+				</div>
+				<div class="btn-reply">
+					<input type="button" class="reply-button" id="replyAddBtn" name="replyAddBtn" value="댓글등록">
+				</div>
 				<form role="form" method="post">
 					<input type="hidden" name="bno" value="${boardVO.bno}">
 					<input type="hidden" name="page" value="${cri.page}">
@@ -62,6 +89,50 @@ $(document).ready(function(){
 	$(".btn-delete").on("click", function(){
 		formObj.attr("action", "/board/deletePage");
 		formObj.submit();
+	});
+});
+
+//댓글 목록 출력 함수
+function getAllList(){
+
+	var bno = 8177;
+	$.getJSON("/reply/all/" + bno, function(data){
+		var str = "";
+		console.log(data.length);
+		
+		$(data).each(function(){
+				str += "<li data-rno='"+this.rno+"' class='replyLi'>"
+					+ this.rno + ":" + this.rcontent + "</li>";
+			});
+		$("#reply").html(str);
+	});
+}
+
+getAllList();
+$("#replyAddBtn").on("click", function(){
+	var bno = 8177;
+	var rwriter = $("#rwriter").val();
+	var rcontent = $("#rcontent").val();
+	
+	$.ajax({
+		type : "post",
+		url : "/reply",
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : "text",
+		data : JSON.stringify({
+			bno : bno,
+			rwriter : rwriter,
+			rcontent : rcontent
+		}),
+		success : function(result) {
+			if(result == "writeSuccess") {
+				alert("등로 완료.");
+			}
+			getAllList(); // 댓글 목록 출력 함수 호출
+		}
 	});
 });
 </script>
