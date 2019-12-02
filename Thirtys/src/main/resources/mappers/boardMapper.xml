@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
 	</select> -->
 	<!-- 글리스트 조회 (페이징)-->
-	<select id="list" resultType="BoardVO">
+	<!-- <select id="list" resultType="BoardVO">
 	<![CDATA[
 		SELECT bno, title, content, writer, regdate, viewcnt, state
 		FROM tbl_board
@@ -58,12 +58,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM tbl_board
 		WHERE bno > 0
 	]]>
-	</select>
+	</select> -->
+	
+	<!-- 댓글 갯수 갱신 -->
+	<update id="updateReplyCnt">
+		UPDATE tbl_board
+		SET replycnt = replycnt + #{amount}
+		WHERE bno = #{bno}
+	</update>
 	
 	<!-- 글리스트 조회 (페이징,검색)-->
 	<select id="listSearch" resultType="BoardVO">
 	<![CDATA[
-		SELECT bno, title, content, writer, regdate, viewcnt, state
+		SELECT bno, title, content, writer, regdate, viewcnt, state, replycnt
 		FROM tbl_board
 		WHERE bno > 0
 	]]>	

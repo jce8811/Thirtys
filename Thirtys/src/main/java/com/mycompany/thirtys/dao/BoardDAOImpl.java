@@ -1,6 +1,8 @@
 package com.mycompany.thirtys.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -75,6 +77,16 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int countSearchPaging(SearchCriteria scri) throws Exception {
 		return session.selectOne(namespace + ".countSearchPaging", scri);
+	}
+
+	@Override
+	public void updateReplyCnt(int bno, int amount) throws Exception {
+		
+		Map<String,Object> paramMap = new HashMap<>();
+		paramMap.put("bno", bno);
+		paramMap.put("amount", amount);
+		
+		session.update(namespace + ".updateReplyCnt", paramMap);
 	}
 
 

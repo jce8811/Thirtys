@@ -17,6 +17,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	private static String namespace = "com.mycompany.thirtys.mappers.replyMapper";
 	
+	
 	@Inject
 	private SqlSession session;
 	
@@ -55,6 +56,11 @@ public class ReplyDAOImpl implements ReplyDAO {
 	@Override
 	public int count(int bno) throws Exception {
 		return session.selectOne(namespace + ".count", bno);
+	}
+
+	@Override
+	public int getBno(int rno) throws Exception {
+		return session.selectOne(namespace + ".getBno", rno);
 	}
 
 }

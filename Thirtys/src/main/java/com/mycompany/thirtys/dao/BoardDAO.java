@@ -24,4 +24,5 @@ public interface BoardDAO {
 	int countPaging(Criteria cri) throws Exception;
 	List<BoardVO> listSearch(SearchCriteria scri) throws Exception;
 	int countSearchPaging(SearchCriteria scri) throws Exception;
+	void updateReplyCnt(int bno, int amount) throws Exception;
 }

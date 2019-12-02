@@ -43,4 +43,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM tbl_reply
 		WHERE bno = #{bno}
 	</select>
+	<!-- 댓글의 게시글 번호 조회 -->
+	<select id="getBno" resultType="int">
+	SELECT bno
+	FROM tbl_reply
+	WHERE rno = #{rno}
+	</select>
 </mapper>
