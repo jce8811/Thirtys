@@ -23,5 +23,6 @@
 		</div>
 	</div>
 </div>
+
 <script src="${path}/resources/js/jquery.min_1.12.4.js"></script>
 <!-- //header -->

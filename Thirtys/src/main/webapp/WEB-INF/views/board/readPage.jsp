@@ -33,10 +33,10 @@
 							</div>
 						</div>
 				</div>
+				<!-- 답글 -->
 				<div class="reply">
 					<h2>댓글 목록</h2>
 					<ul id="reply">
-		
 					</ul>
 					<div class="paging1">
 						<div class="paging">
@@ -67,31 +67,39 @@
 				<div class="btn-reply">
 					<input type="button" class="reply-button" id="replyAddBtn" name="replyAddBtn" value="댓글등록">
 				</div>
+				<!-- //답글 종료 -->
 				<form role="form" method="post">
 					<input type="hidden" name="bno" value="${boardVO.bno}">
 					<input type="hidden" name="page" value="${cri.page}">
 					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 				</form>
-			 <div class="btn-box02">
-				 <a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
-				 <c:if test="${login.uname == boardVO.writer}"> 
-				 <button type="submit" class="btn-modify">글수정</button>
-				 <button type="submit" class="btn-delete">글삭제</button>
-				 </c:if>
-				 
-			 </div>
+				 <div class="btn-box02">
+					 <a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
+					 <c:if test="${login.uname == boardVO.writer}"> 
+					 <button type="submit" class="btn-modify">글수정</button>
+					 <button type="submit" class="btn-delete">글삭제</button>
+					 </c:if>
+					 
+			 	</div>
 			</div>
-<div id="modBox" style="display:none;">
-	<div class="modal-title"></div>
-	<div>
-		<input type="text" id="rcont">
-	</div>
-	<div>
-		<button type="button" id="replyModBtn">수정</button>
-		<button type="button" id="replyDelBtn">삭제</button>
-		<button type="button" id="closeBtn">닫기</button>
-	</div>
-</div>
+				<!-- 답글 수정 모달 -->
+				<div id="modBox" style="display:none;">
+					<div class="modal-title"> 댓글 수정</div>
+					<div>
+						<input id="modalRno" name="modalRno" readonly>
+					</div>
+					<div>
+						<input id="modalRwriter" name="modalRwriter" readonly>
+					</div>
+					<div>
+						<textarea id="modalRcontent" name="modalRcontent" maxlength="10000" title="내용" required></textarea>
+					</div>
+					<div>
+						<button type="button" id="replyModBtn">수정</button>
+						<button type="button" id="closeBtn">닫기</button>
+					</div>
+				</div>
+				<!-- //답글 수정 모달 -->
 		</div>
 	</div>
 </div>
@@ -109,31 +117,31 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 });
-//댓글 목록 출력 함수
-function getAllList(){
 
-	var bno = 8177;
+$(document).ready(function(){
+	
+var bno = ${boardVO.bno};
+var replyPageNum = 1;
+getPageList(1);
+//댓글 목록 출력 함수
+/* function getAllList(){
 	$.getJSON("/reply/all/" + bno, function(data){
 		var str = "";
 		console.log(data.length);
 		
 		$(data).each(function(){
 				str += "<li data-rno='"+this.rno+"' class='replyLi'>"
-					+ "<p class='rcontent'>" + this.rcontent + "</p>"
 					+ "<p class='rwriter'>" + this.rwriter + "</p>"  
+					+ "<p class='rcontent'>" + this.rcontent + "</p>"
 					+ "<button>수정</button>"
 					+ "</li>"
 					+ "<hr/>";
 			});		
 		$("#reply").html(str);
 	});
-}
+}  */
 
-var bno = 8177;
-getAllList();
-getPageList(1);
 $("#replyAddBtn").on("click", function(){
-	var bno = 8177;
 	var rwriter = $("#rwriter").val();
 	var rcontent = $("#rcontent").val();
 	
@@ -154,22 +162,62 @@ $("#replyAddBtn").on("click", function(){
 			if(result == "writeSuccess") {
 				alert("등로 완료.");
 			}
-			getAllList(); // 댓글 목록 출력 함수 호출
+			getPageList(page);
 		}
 	});
 });
 
+// 댓글 수정 모달창
 $("#reply").on("click", ".replyLi button", function(){
 	var reply = $(this).parent();
 	
 	var rno = reply.attr("data-rno");
-	var rcontent = reply.text();
+	var rcontent = reply.find(".rcontent").text();
+	var rwriter = reply.find(".rwriter").text();
 	
-	$(".modal-title").html(rno);
-	$("#rcont").val(rcontent);
+	$("#modalRno").val(rno);
+	$("#modalRwriter").val(rwriter);
+	$("#modalRcontent").val(rcontent);
 	$("#modBox").show("slow");
 });
+// 댓글 수정
+$("#replyModBtn").on("click", function(){
+	var reply = $(this).parent().parent();
+	var rno = reply.find("#modalRno").val();
+	var rcontent = reply.find('#modalRcontent').val();
+	$.ajax({
+		type : "put",
+		url : "/reply/" + rno,
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "PUT"
+		},
+		data : JSON.stringify(
+			{rcontent : rcontent}	
+		),
+		dataType : "text",
+		success : function(result) {
+			console.log("result : " + result);
+			if(result == "modifySuccess"){
+				alert("댓글 수정 완료");
+				getPageList(replyPage);
+				$("#modBox").hide("slow");
+			}
+		}
+	});
+});
 
+
+function getFormatDate(date){
+	date = new Date(parseInt(date));
+	var year = date.getFullYear();
+	var month = date.getMonth();
+	var day = date.getDate();
+	var hour = date.getHours();
+	var minute = date.getMinutes();
+	var second = date.getSeconds();
+	return year + "-" +  month + "-" + day +"  "+ hour + ":" + minute + ":" + second;
+}
 function getPageList(page){
 	$.getJSON("/reply/"+bno+"/"+page, function(data){
 		console.log(data.list.length);
@@ -178,9 +226,12 @@ function getPageList(page){
 		
 		$(data.list).each(function(){
 			str += "<li data-rno='"+this.rno+"' class='replyLi'>"
+				+ "<span class='rwriter' style='font-size:20px;'>" + this.rwriter + "</span>" 
+				+ "<span class='regdate' style='font-size:13px;'>" + getFormatDate(this.regdate) + "</span>"  
 				+ "<p class='rcontent'>" + this.rcontent + "</p>"
-				+ "<p class='rwriter'>" + this.rwriter + "</p>"  
 				+ "<button>수정</button>"
+				+ " "
+				+ "<button>삭제</button>"
 				+ "</li>"
 				+ "<hr/>";
 		});
@@ -203,13 +254,17 @@ function printPaging(pageMaker) {
 	}
 	$('.pagination').html(str);
 }
+
 var replyPage = 1;
 $(".pagination").on("click", "li a", function(event){
 	event.preventDefault();
 	replyPage = $(this).attr("href");
 	getPageList(replyPage);
-});
+}
 
+);
+
+});
 </script>
 </body>
 </html>
