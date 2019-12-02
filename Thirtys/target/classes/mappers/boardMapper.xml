@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 글 조회 -->
 	<select id="read" resultType="BoardVO">
-		SELECT bno, title, content, writer, regdate, viewcnt
+		SELECT bno, title, content, writer, regdate, viewcnt, replycnt
 		FROM tbl_board
 		WHERE bno = #{bno}
 	</select>
@@ -64,6 +64,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateReplyCnt">
 		UPDATE tbl_board
 		SET replycnt = replycnt + #{amount}
+		WHERE bno = #{bno}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateViewCnt">
+		UPDATE tbl_board
+		SET viewcnt = viewcnt + 1
 		WHERE bno = #{bno}
 	</update>
 	

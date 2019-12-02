@@ -10,6 +10,7 @@ public interface BoardService {
 	
 	void write(BoardVO boardVO) throws Exception;
 	BoardVO read(int bno) throws Exception;
+	BoardVO readCnt(int bno) throws Exception;
 	void modify(BoardVO boardVO) throws Exception;
 	void delete(int bno) throws Exception;
 

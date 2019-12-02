@@ -35,7 +35,7 @@
 				</div>
 				<!-- 답글 -->
 				<div class="reply">
-					<h2>댓글 목록</h2>
+					<h2>댓글 목록 [${boardVO.replycnt}]</h2>
 					
 					<ul id="reply">
 				

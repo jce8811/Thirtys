@@ -1,17 +1,26 @@
 package com.mycompany.thirtys.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mycompany.thirtys.dao.BoardDAO;
 import com.mycompany.thirtys.service.BoardService;
 import com.mycompany.thirtys.vo.BoardVO;
 import com.mycompany.thirtys.vo.PageMaker;
@@ -25,6 +34,7 @@ public class SearchController {
 	
 	@Inject
 	private BoardService boardService;
+	private BoardDAO boardDAO;
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
@@ -65,11 +75,31 @@ public class SearchController {
 	
 	// 게시글 조회
 	@RequestMapping(value="/readPage", method = RequestMethod.GET)
-	public void readPage(@RequestParam("bno") int bno, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
+	public void readPage(@RequestParam("bno") int bno, @ModelAttribute("scri") SearchCriteria scri, Model model, HttpServletRequest request, HttpSession session) throws Exception {
+		// 저장된 쿠키 불러오기
+		Cookie[] cookieFromRequest = request.getCookies();
+		String cookieValue = null;
+		for(int i = 0; i<cookieFromRequest.length; i++) {
+			// 요청정보로부터 쿠키를 가져온다.
+			cookieValue = cookieFromRequest[0].getValue();
+		}
 		
+		// 쿠키 세션 입력
+		if(session.getAttribute(bno + ":cookie") == null) {
+			session.setAttribute(bno + ":cookie", bno + ":" + cookieValue);
+		}else {
+			session.setAttribute(bno + ":cookie ex", session.getAttribute(bno + ":cookie"));
+			if(!session.getAttribute(bno + ":cookie").equals(bno + ":" + cookieValue)) {
+				session.setAttribute(bno + ":cookie", bno + ":" + cookieValue);
+			}
+		}
+
+		model.addAttribute("boardVO", boardService.read(bno));;
 		logger.info("readPaging GET");
-		model.addAttribute("boardVO", boardService.read(bno));
 		
+		if(!session.getAttribute(bno + ":cookie").equals(session.getAttribute(bno + ":cookie ex"))) {
+			model.addAttribute("boardVO", boardService.readCnt(bno));;
+		}
 	}
 	// 게시글 수정 페이지
 	@RequestMapping(value="/modifyPage", method = RequestMethod.GET)

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.thirtys.dao.BoardDAO;
 import com.mycompany.thirtys.vo.BoardVO;
@@ -22,9 +24,15 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.write(boardVO);
 
 	}
-
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO read(int bno) throws Exception {
+		return boardDAO.read(bno);
+	}
+	@Transactional(isolation = Isolation.READ_COMMITTED)
+	@Override
+	public BoardVO readCnt(int bno) throws Exception {
+		boardDAO.updateViewCnt(bno);
 		return boardDAO.read(bno);
 	}
 
