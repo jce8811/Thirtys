@@ -9,6 +9,7 @@ public class ReplyVO {
 	private String rcontent;
 	private String rwriter;
 	private Date regdate;
+	private String state;
 	
 	public int getRno() {
 		return rno;
@@ -40,11 +41,18 @@ public class ReplyVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	
 	@Override
 	public String toString() {
 		return "ReplyVO [rno=" + rno + ", bno=" + bno + ", rcontent=" + rcontent + ", rwriter=" + rwriter + ", regdate="
-				+ regdate + "]";
+				+ regdate + ", state=" + state + "]";
 	}
+	
 		
 }

@@ -36,7 +36,9 @@
 				<!-- 답글 -->
 				<div class="reply">
 					<h2>댓글 목록</h2>
+					
 					<ul id="reply">
+				
 					</ul>
 					<div class="paging1">
 						<div class="paging">
@@ -96,6 +98,7 @@
 					</div>
 					<div>
 						<button type="button" id="replyModBtn">수정</button>
+						<button type="button" id="replyDelBtn">삭제</button>
 						<button type="button" id="closeBtn">닫기</button>
 					</div>
 				</div>
@@ -141,6 +144,7 @@ getPageList(1);
 	});
 }  */
 
+// 댓글 작성
 $("#replyAddBtn").on("click", function(){
 	var rwriter = $("#rwriter").val();
 	var rcontent = $("#rcontent").val();
@@ -168,7 +172,7 @@ $("#replyAddBtn").on("click", function(){
 });
 
 // 댓글 수정 모달창
-$("#reply").on("click", ".replyLi button", function(){
+$("#reply").on("click", ".replyLi .rmodify", function(){
 	var reply = $(this).parent();
 	
 	var rno = reply.attr("data-rno");
@@ -206,8 +210,32 @@ $("#replyModBtn").on("click", function(){
 		}
 	});
 });
-
-
+// 댓글 삭제
+$("#replyDelBtn").on("click",function(){
+	var reply = $(this).parent().parent();
+	var rno = reply.find("#modalRno").val();
+	var state = $(this).parent().find("#state").val();
+		$.ajax({
+			type : "post",
+			url : "/reply/" + rno,
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			data : JSON.stringify(
+					{state : state}	
+				),
+			dataType : "text",
+			success : function(result) {
+				console.log("result : " + result);
+				if(result == "deleteSuccess"){
+					alert("댓글 삭제 완료");
+					getPageList(replyPage);
+					$("#modBox").hide("slow");
+				}
+			}
+		});
+});
 function getFormatDate(date){
 	date = new Date(parseInt(date));
 	var year = date.getFullYear();
@@ -225,16 +253,23 @@ function getPageList(page){
 		var str = "";
 		
 		$(data.list).each(function(){
+			if(this.state == 'R'){
 			str += "<li data-rno='"+this.rno+"' class='replyLi'>"
 				+ "<span class='rwriter' style='font-size:20px;'>" + this.rwriter + "</span>" 
 				+ "<span class='regdate' style='font-size:13px;'>" + getFormatDate(this.regdate) + "</span>"  
 				+ "<p class='rcontent'>" + this.rcontent + "</p>"
-				+ "<button>수정</button>"
-				+ " "
-				+ "<button>삭제</button>"
+				+ "<button class='rmodify'>수정</button>"
 				+ "</li>"
 				+ "<hr/>";
-		});
+			}else if(this.state == 'D'){
+			str += "<li data-rno='"+this.rno+"' class='replyLi'>"
+				+ "<span class='rwriter' style='font-size:20px;'>" + this.rwriter + "</span>"
+				+ "<p style='color:#FF0000; font-size:20px; text-align:center;'><strong>-삭제된 답글입니다.-</strong></p>"
+				+ "</li>"
+				+ "<hr/>";
+			}
+
+		});	
 		$("#reply").html(str);
 		printPaging(data.pageMaker);
 	});

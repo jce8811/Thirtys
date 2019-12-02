@@ -41,4 +41,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDAO.count(bno);
 	}
 
+	@Override
+	public void delete(ReplyVO replyVO) throws Exception {
+		replyDAO.delete(replyVO);
+		
+	}
+
 }

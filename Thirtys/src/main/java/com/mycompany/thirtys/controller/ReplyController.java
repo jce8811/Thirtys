@@ -48,7 +48,7 @@ public class ReplyController {
 	}
 	
 	// 댓글 리스트
-	@RequestMapping(value="/all/{bno}", method = RequestMethod.GET)
+	@RequestMapping(value="/{bno}", method = RequestMethod.GET)
 	public ResponseEntity<List<ReplyVO>> list(@PathVariable("bno") int bno) {
 		
 		logger.info("list GET");
@@ -79,6 +79,24 @@ public class ReplyController {
 		}
 		return entity;
 	}
+	// 댓글 삭제
+	@RequestMapping(value="/{rno}", method = RequestMethod.POST)
+	public ResponseEntity<String> delete(@PathVariable("rno") int rno, @RequestBody ReplyVO replyVO){
+		
+		logger.info("delete POST");
+		
+		ResponseEntity<String> entity = null;
+		try {
+			replyVO.setRno(rno);
+			replyService.delete(replyVO);
+			entity = new ResponseEntity<>("deleteSuccess", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 	// 댓글 페이징 처리
 	@RequestMapping(value = "/{bno}/{page}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> listPage(@PathVariable("bno") int bno, @PathVariable("page") int page) {
