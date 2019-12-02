@@ -4,7 +4,7 @@
 /* 레이아웃 */
 #header {height: 40px; border-bottom: 1px solid #e6e6e6;}
 #nav { height: 90px; border-bottom: 1px solid #000000;}
-#board {max-width: 1200px; margin: 0 auto; padding-bottom: 50px; }
+#board {max-width: 1200px; margin: 0 auto; padding-bottom: 50px; height: 85%;}
 #middle {float: left; width: 700px; height: 1000px; line-height: 1000px; background: #4caf50;}
 #footer {float: left; width: 1000px; height: 100px; line-geight: 600px; background: #66bb6a;}
 
@@ -30,7 +30,12 @@
 .nav-sub li {width: 100%; float:left;}
 .nav-sub a {display: inline-block;  width: 100%; padding: 5px 0; text-align: center; color: #555; letter-spacing: -0.5pt;
     font-weight: 700; font-size: 14px; line-height: 19px;}	
-         	               			
+
+/* 검색메뉴 */
+.search-tap {float: right; padding-bottom: 10px;}
+.search-tap select {width: 62px; border: 1px solid #999; padding: 2px; height: 26px;}
+.search-tap input {height: 26px;} 
+.search-tap button {background: #494e56;; color: #fff; width: 50px; height: 26px;}        	               			
 /* 회원 가입  & 로그인 */
 .user-side { width: 200px; background: #fff; height: 100%;}
 .user-side h2{width: 100%; height: 100px; padding: 0 10px; font-size: 26px;
@@ -85,7 +90,7 @@
 /* 게시판1 */
 .board-header { margin: 0; display: block; width: auto; height: 100px; line-height: 100px; border-bottom: 1px solid #000000;}
 .board-header h2 {text-align: left; font-size: 30px;}
-.board-body {padding: 40px 20px 20px;}
+.board-body {padding: 20px 20px 20px;}
 .board-body table {width: 100%; border-collapse: collapse;}
 .board-body tr th {background: #eaeaea; font-size: 17px; font-weight: 600; color: #000;
     padding: 20px 0; border-top: 1px solid #b7b7b7; border-bottom: 1px solid #b7b7b7;

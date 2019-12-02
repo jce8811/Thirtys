@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.thirtys.vo.BoardVO;
 import com.mycompany.thirtys.vo.Criteria;
+import com.mycompany.thirtys.vo.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -16,28 +17,28 @@ public class BoardDAOImpl implements BoardDAO {
 	private static final String namespace = "com.mycompany.thirtys.mappers.boardMapper";
 	
 	@Inject
-	SqlSession sqlSession;
+	SqlSession session;
 	
 	@Override
 	public void write(BoardVO boardVO) throws Exception {
-		sqlSession.insert(namespace + ".write", boardVO);
+		session.insert(namespace + ".write", boardVO);
 
 	}
 
 	@Override
 	public BoardVO read(int bno) throws Exception {
-		return sqlSession.selectOne(namespace + ".read", bno);
+		return session.selectOne(namespace + ".read", bno);
 	}
 
 	@Override
 	public void modify(BoardVO boardVO) throws Exception {
-		sqlSession.update(namespace + ".modify", boardVO);
+		session.update(namespace + ".modify", boardVO);
 
 	}
 
 	@Override
 	public void delete(int bno) throws Exception {
-		sqlSession.delete(namespace + ".delete", bno);
+		session.delete(namespace + ".delete", bno);
 
 	}
 
@@ -53,17 +54,27 @@ public class BoardDAOImpl implements BoardDAO {
 			page = 1;
 		}
 		page = (page - 1)*10;
-		return sqlSession.selectList(namespace + ".listPage", page);
+		return session.selectList(namespace + ".listPage", page);
 	}
 
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-		return sqlSession.selectList(namespace + ".list", cri);
+		return session.selectList(namespace + ".list", cri);
 	}
 
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
-		return sqlSession.selectOne(namespace + ".countPaging", cri);
+		return session.selectOne(namespace + ".countPaging", cri);
+	}
+
+	@Override
+	public List<BoardVO> listSearch(SearchCriteria scri) throws Exception {
+		return session.selectList(namespace + ".listSearch", scri);
+	}
+
+	@Override
+	public int countSearchPaging(SearchCriteria scri) throws Exception {
+		return session.selectOne(namespace + ".countSearchPaging", scri);
 	}
 
 

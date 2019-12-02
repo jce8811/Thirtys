@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mycompany.thirtys.vo.BoardVO;
 import com.mycompany.thirtys.vo.Criteria;
+import com.mycompany.thirtys.vo.SearchCriteria;
 
 public interface BoardDAO {
 	
@@ -21,4 +22,6 @@ public interface BoardDAO {
 	List<BoardVO> listPage(int page) throws Exception;
 	List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	int countPaging(Criteria cri) throws Exception;
+	List<BoardVO> listSearch(SearchCriteria scri) throws Exception;
+	int countSearchPaging(SearchCriteria scri) throws Exception;
 }

@@ -72,11 +72,14 @@
 				<!-- //답글 종료 -->
 				<form role="form" method="post">
 					<input type="hidden" name="bno" value="${boardVO.bno}">
-					<input type="hidden" name="page" value="${cri.page}">
-					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+					<input type="hidden" name="page" value="${scri.page}">
+					<input type="hidden" name="perPageNum" value="${scri.perPageNum}">
+					<input type="hidden" name="searchType" value="${scri.searchType}">
+					<input type="hidden" name="keyword" value="${scri.keyword}">
 				</form>
 				 <div class="btn-box02">
-					 <a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
+					 <a class="btn01" href="${path}/board/list?page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}
+											&keyword=${scri.keyword}"">목록</a>
 					 <c:if test="${login.uname == boardVO.writer}"> 
 					 <button type="submit" class="btn-modify">글수정</button>
 					 <button type="submit" class="btn-delete">글삭제</button>
@@ -166,7 +169,7 @@ $("#replyAddBtn").on("click", function(){
 			if(result == "writeSuccess") {
 				alert("등로 완료.");
 			}
-			getPageList(page);
+			getPageList(1);
 		}
 	});
 });

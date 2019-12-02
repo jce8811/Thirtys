@@ -29,9 +29,12 @@
 						<textarea id="content" name="content" rows="30" placeholder="내용">${boardVO.content}</textarea>
 					</div>
 					<div class="btn-box02">
-					<input type="hidden" name="page" value="${cri.page}">
-					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
-					<a class="btn01" href="${path}/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}">목록</a>
+					<input type="hidden" name="page" value="${scri.page}">
+					<input type="hidden" name="perPageNum" value="${scri.perPageNum}">
+					<input type="hidden" name="searchType" value="${scri.searchType}">
+					<input type="hidden" name="keyword" value="${scri.keyword}">
+					<a class="btn01" href="${path}/board/list?page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}
+											&keyword=${scri.keyword}">목록</a>
 					<button type="reset">초기화</button>
 					<button type="submit">수정완료</button>
 					</div>

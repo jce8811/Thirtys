@@ -8,7 +8,7 @@
 			<div class="nav">	
 				<ul>
 					<li><a href="#">공지사항</a></li>
-					<li><a href="${path}/board/listPage">게시판</a></li>
+					<li><a href="${path}/board/list">게시판</a></li>
 					<li><a href="#">질문게시판</a></li>
 					<li><a href="#">아이콘 구매</a></li>
 				</ul>
@@ -21,7 +21,7 @@
 					<li><a href="#"></a></li>
 				</ul>
 				<ul>
-					<li><a href="${path}/board/listPage">자유게시판</a></li>
+					<li><a href="${path}/board/list">자유게시판</a></li>
 					<li><a href="#">갤러리</a></li>
 					<li><a href="#">고민게시판</a></li>
 				</ul>
