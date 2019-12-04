@@ -3,12 +3,19 @@ package com.mycompany.thirtys.vo;
 import java.util.Date;
 
 public class UserVO {
+	private String uid;
 	private String uemail;
 	private String upw;
 	private String uname;
 	private int upoint;
 	private Date udate;
 	
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	public String getUemail() {
 		return uemail;
 	}
@@ -42,7 +49,8 @@ public class UserVO {
 	
 	@Override
 	public String toString() {
-		return "UserVO [uemail=" + uemail + ", upw=" + upw + ", uname=" + uname + ", upoint=" + upoint + ", udate=" + udate + "]";
-	}
+		return "UserVO [uid=" + uid + ", uemail=" + uemail + ", upw=" + upw + ", uname=" + uname + ", upoint=" + upoint
+				+ ", udate=" + udate + "]";
+	}	
 	
 }

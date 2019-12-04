@@ -1,40 +1,33 @@
 package com.mycompany.thirtys.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mycompany.thirtys.dao.BoardDAO;
 import com.mycompany.thirtys.service.BoardService;
 import com.mycompany.thirtys.vo.BoardVO;
 import com.mycompany.thirtys.vo.PageMaker;
 import com.mycompany.thirtys.vo.SearchCriteria;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/board/")
 public class SearchController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 	
 	@Inject
 	private BoardService boardService;
-	private BoardDAO boardDAO;
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
@@ -138,5 +131,16 @@ public class SearchController {
 		
 		return "redirect:/board/list";
 	}
+
+	@RequestMapping(value="/ex", method = RequestMethod.GET)
+	public void form() throws Exception{
+	}
+	
+	@RequestMapping(value="/submit", method = RequestMethod.POST)
+	public String submit(HttpServletRequest request, Model model) throws Exception{
+	    model.addAttribute("text",request.getParameter("text"));
+	    return "board/submit";
+	}
+
 	
 }

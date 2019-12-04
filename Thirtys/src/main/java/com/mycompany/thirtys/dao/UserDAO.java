@@ -12,7 +12,10 @@ public interface UserDAO {
 	// 로그인 처리
 	UserVO login(LoginDTO loginDTO) throws Exception;
 	// 로그인 유지 처리
-	void keepLogin(String uemail, String sessionId, Date next) throws Exception;
+	void keepLogin(String uid, String sessionId, Date next) throws Exception;
 	// 세션키 검증
 	UserVO checkWithSessionKey(String value);
+	
+	String checkId(String uid, String uemail) throws Exception;
+	void modifyPw(UserVO userVO) throws Exception;
 }

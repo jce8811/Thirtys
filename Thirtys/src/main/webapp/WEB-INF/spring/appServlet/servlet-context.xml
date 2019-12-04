@@ -53,7 +53,7 @@
 		
 	</interceptors>
 		
-	<context:component-scan base-package="com.mycompany.thirtys" />
+	<context:component-scan base-package="com.mycompany.thirtys." />
 	
 	
 	

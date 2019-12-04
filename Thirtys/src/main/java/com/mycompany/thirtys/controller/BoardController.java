@@ -18,7 +18,7 @@ import com.mycompany.thirtys.vo.Criteria;
 import com.mycompany.thirtys.vo.PageMaker;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/board/")
 public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);

@@ -23,6 +23,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public void write(BoardVO boardVO) throws Exception {
+
 		session.insert(namespace + ".write", boardVO);
 
 	}

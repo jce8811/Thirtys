@@ -9,6 +9,8 @@ public interface UserService {
 	
 	void join(UserVO userVO) throws Exception;
 	UserVO login(LoginDTO loginDTO) throws Exception;
-	void keepLogin(String uemail, String sessionId, Date next) throws Exception;
+	void keepLogin(String uid, String sessionId, Date next) throws Exception;
 	UserVO checkWithSessionKey(String value);
+	String checkId(String uid, String uemail) throws Exception;
+	void modifyPw(UserVO userVO) throws Exception;
 }

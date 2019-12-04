@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.thirtys.mappers.userMapper">
 	
 	<insert id="join">
-		INSERT INTO tbl_user (uemail, upw, uname)
-		VALUES	( #{uemail}, #{upw}, #{uname})
+		INSERT INTO tbl_user (uid, uemail, upw, uname)
+		VALUES ( #{uid}, #{uemail}, #{upw}, #{uname})
 	</insert>
 	
 	<select id="login" resultType="UserVO">
 		SELECT *
 		FROM tbl_user
-		WHERE uemail = #{uemail} 
+		WHERE uid = #{uid} 
 	</select>
 	
 	<update id="keepLogin">
 		UPDATE tbl_user
 		SET usessionkey = #{sessionId}, usessionlimit = #{next}
-		WHERE uemail = #{uemail}
+		WHERE uid = #{uid}
 	</update>
 	
 	<select id="checkWithSessionKey" resultType="UserVO">
@@ -27,4 +25,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM tbl_user
 		WHERE usessionkey = #{value} and usessionlimit > now()
 	</select>
+	
+	<!-- 아이디 이메일 확인 -->
+	<select id="checkID" resultType="String">
+		SELECT upw
+		FROM tbl_user
+		WHERE uid=#{uid} AND uemail=#{uemail}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="modifyPw">
+		UPDATE tbl_user
+		SET upw = #{upw}
+		WHERE uid = #{uid}
+	</update>
+	
 </mapper>

@@ -23,7 +23,7 @@ import com.mycompany.thirtys.vo.LoginDTO;
 import com.mycompany.thirtys.vo.UserVO;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/")
 public class LoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -49,18 +49,17 @@ public class LoginController {
 		logger.info("login POST");
 		
 		UserVO userVO = userService.login(loginDTO);
-		
 		if (userVO == null || !BCrypt.checkpw(loginDTO.getUpw(), userVO.getUpw())) {
 			return;
 		}
 		model.addAttribute("userVO", userVO);
-
+		
 		// 로그인 유지를 선택할 경우
-		if(loginDTO.isUserCookie()) {
+		if(loginDTO.isUseCookie()) {
 			
 			int amount = 60 * 60 * 24 * 7;
 			Date sessionlimit = new Date(System.currentTimeMillis()+(1000*amount));
-			userService.keepLogin(userVO.getUemail(), session.getId(), sessionlimit);
+			userService.keepLogin(userVO.getUid(), session.getId(), sessionlimit);
 		}
 	}
 	// 로그아웃 처리
@@ -83,6 +82,6 @@ public class LoginController {
 				userService.keepLogin(userVO.getUemail(), session.getId(), new Date());
 			}
 		}
-		return "user/logout";
+		return "/user/logout";
 	}
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.thirtys.vo.LoginDTO;
@@ -36,10 +37,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void keepLogin(String uemail, String sessionId, Date next) throws Exception {
+	public void keepLogin(String uid, String sessionId, Date next) throws Exception {
 		
 		Map<String, Object> paraMap = new HashMap<String, Object>();
-		paraMap.put("uemail", uemail);
+		paraMap.put("uid", uid);
 		paraMap.put("sessionId", sessionId);
 		paraMap.put("next", next);
 		
@@ -50,5 +51,21 @@ public class UserDAOImpl implements UserDAO {
 	public UserVO checkWithSessionKey(String value) {
 		return session.selectOne(namespace + ".checkWithSessionKey", value);
 	}
+
+	@Override
+	public String checkId(String uid, String uemail) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("uid", uid);
+		map.put("uemail", uemail);
+		return session.selectOne(namespace + ".checkID", map);
+	}
+
+	@Override
+	public void modifyPw(UserVO userVO) throws Exception {
+		session.update(namespace + ".modifyPw", userVO);
+	}
+
+
+
 	
 }

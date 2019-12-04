@@ -16,19 +16,11 @@
 		<div class="container">
 			<div class="user-side">
 				<h2>마이페이지</h2>
-				<div class="info-side">
-					<div class="myimg">
-						프로필 사진
-					</div>
-					<ul>
-						<li><a href="#">회원정보 변경</a></li>
-						<li><a href="${path}/user/mywrite">내가 쓴 글 보기</a></li>
-						<li><a href="#">회원탈퇴</a></li>
-					</ul>
-				</div>
+			<c:import url="../sidebar/sidebar.jsp"/>	
 			</div>
 			<div class="info-body">
-			
+				<div class="mypage">
+				</div>
 			</div>
 		</div>
 	</div>	

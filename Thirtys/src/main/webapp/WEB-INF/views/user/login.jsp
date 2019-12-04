@@ -21,7 +21,7 @@
 				<form class="user-form" action="${path}/user/loginPOST" method="post">
 					<h3>L O G I N</h3>
 					<fieldset>
-						<input type="text" name="uemail" class="uemail" placeholder="이메일">
+						<input type="text" name="uid" class="uid" placeholder="아이디">
 						<input type="password" name="upw" class="upw" placeholder="비밀번호">
 					</fieldset>
 					

@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<meta charset="UTF-8">
 <!-- 웹 폰트 -->
-<link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- css -->
 <link rel="stylesheet" href="<c:url value="/resources/css/reset.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
@@ -16,7 +17,7 @@
 				<a href="${path}/user/join" style="color: #3d449c;">회원가입</a>
 				</c:if>
 				<c:if test="${not empty login}">
-				<a href="${path}/user/info">마이페이지(${login.uname}님)</a>
+				<a href="${path}/user/info">${login.uname}님(${login.uid})</a>
 				<a href="${path}/user/logout">로그아웃</a>
 				</c:if>
 			</div>

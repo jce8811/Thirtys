@@ -28,12 +28,21 @@ public class UserServiceImpl implements UserService {
 		return userDAO.login(loginDTO);
 	}
 	@Override
-	public void keepLogin(String uemail, String sessionId, Date next) throws Exception {
-		userDAO.keepLogin(uemail, sessionId, next);
+	public void keepLogin(String uid, String sessionId, Date next) throws Exception {
+		userDAO.keepLogin(uid, sessionId, next);
 	}
 	@Override
 	public UserVO checkWithSessionKey(String value) {
 		return userDAO.checkWithSessionKey(value);
+	}
+	@Override
+	public String checkId(String uid, String uemail) throws Exception {
+		return userDAO.checkId(uid, uemail);
+		
+	}
+	@Override
+	public void modifyPw(UserVO userVO) throws Exception {
+		userDAO.modifyPw(userVO);
 	}
 
 }

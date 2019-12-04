@@ -2,15 +2,15 @@ package com.mycompany.thirtys.vo;
 
 public class LoginDTO {
 	
-	private String uemail;
+	private String uid;
 	private String upw;
 	private boolean useCookie;
 	
-	public String getUemail() {
-		return uemail;
+	public String getUid() {
+		return uid;
 	}
-	public void setUemail(String uemail) {
-		this.uemail = uemail;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	public String getUpw() {
 		return upw;
@@ -18,16 +18,16 @@ public class LoginDTO {
 	public void setUpw(String upw) {
 		this.upw = upw;
 	}
-	public boolean isUserCookie() {
+	public boolean isUseCookie() {
 		return useCookie;
 	}
-	public void setUserCookie(boolean userCookie) {
-		this.useCookie = userCookie;
+	public void setUseCookie(boolean useCookie) {
+		this.useCookie = useCookie;
 	}
 	
 	@Override
 	public String toString() {
-		return "UserDTO [uemail=" + uemail + ", upw=" + upw + ", useCookie=" + useCookie + "]";
+		return "LoginDTO [uid=" + uid + ", upw=" + upw + ", useCookie=" + useCookie + "]";
 	}
-		
+			
 }
