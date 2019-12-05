@@ -18,12 +18,12 @@
 				<ul>
 					<li><a href="#">공지사항</a></li>
 					<li><a href="#">이벤트</a></li>
-					<li><a href="${path}/board/ex">폼</a></li>
+					<li><a href="${path}/upload">파일전송</a></li>
 					<li><a href="#"></a></li>
 				</ul>
 				<ul>
 					<li><a href="${path}/board/list">자유게시판</a></li>
-					<li><a href="#">갤러리</a></li>
+					<li><a href="${path}/gallery/list">갤러리</a></li>
 					<li><a href="#"></a></li>
 				</ul>
 				<ul>

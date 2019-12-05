@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.thirtys.dao.BoardDAO;
+import com.mycompany.thirtys.dao.FileDAO;
 import com.mycompany.thirtys.vo.BoardVO;
 import com.mycompany.thirtys.vo.Criteria;
 import com.mycompany.thirtys.vo.SearchCriteria;
@@ -16,12 +17,28 @@ import com.mycompany.thirtys.vo.SearchCriteria;
 @Service
 public class BoardServiceImpl implements BoardService {
 	
+	private final BoardDAO boardDAO;
+	private final FileDAO fileDAO;
+	
 	@Inject
-	BoardDAO boardDAO;
-
+	public BoardServiceImpl(BoardDAO boardDAO, FileDAO fileDAO) {
+		this.boardDAO = boardDAO;
+		this.fileDAO = fileDAO;
+	}
+	
+	@Transactional
 	@Override
 	public void write(BoardVO boardVO) throws Exception {
+		// 게시글 입력 처리
 		boardDAO.write(boardVO);
+		String[] files = boardVO.getFiles();
+		
+		if(files == null) {
+			return;
+		}
+		// 게시글 첨부파일 입력처리
+		for (String fileName : files)
+			fileDAO.addFile(fileName);
 
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED)
@@ -29,6 +46,7 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO read(int bno) throws Exception {
 		return boardDAO.read(bno);
 	}
+	
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO readCnt(int bno) throws Exception {

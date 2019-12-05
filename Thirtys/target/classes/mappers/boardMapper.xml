@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 글 작성 -->
 	<insert id="write">
-		INSERT INTO tbl_board(title, content, writer, regdate, viewcnt)
-		VALUES ( #{title}, #{content}, #{writer}, #{regdate}, #{viewcnt})
+		INSERT INTO tbl_board(bno, title, content, writer, regdate, viewcnt)
+		VALUES ( #{bno}, #{title}, #{content}, #{writer}, #{regdate}, #{viewcnt})
 	</insert>
 	
 	<!-- 글 조회 -->
@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 글 수정 -->
 	<update id="modify">
 		UPDATE tbl_board
-		SET title = #{title}, content = #{content}
+		SET title = #{title} AND content = #{content}
 		WHERE bno = #{bno}
 	</update>
 	
@@ -31,7 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET state = 'D'
 		WHERE bno = #{bno}
 	</delete>
-	
 	
 	<!-- <select id="list" resultType="BoardVO">
 	<![CDATA[

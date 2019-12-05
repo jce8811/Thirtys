@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판</title>
+<title>갤러리</title>
 </head>
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
@@ -87,7 +87,7 @@
 						<input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}">
 					</form>
 				</div>
-				<div class="btn-box01"><a class="btn01" href="${path}/board/write">글쓰기</a></div>
+				<div class="btn-box01"><a class="btn01" href="${path}/gallery/write">글쓰기</a></div>
 			</div>
 			<!-- //페이징 및 버튼 끝 -->
 			</div>
