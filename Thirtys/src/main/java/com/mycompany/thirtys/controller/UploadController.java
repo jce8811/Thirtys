@@ -3,8 +3,11 @@ package com.mycompany.thirtys.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -13,18 +16,25 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.thirtys.commons.MediaUtils;
 import com.mycompany.thirtys.commons.UploadFileUtils;
+import com.mycompany.thirtys.service.BoardService;
+import com.mycompany.thirtys.service.FileService;
 
 @RestController
 public class UploadController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
+	
+	@Inject
+	FileService fileService;
 	
 	@Resource
 	private String uploadPath;
@@ -73,7 +83,7 @@ public class UploadController {
 		return entity;
 	}
 	
-	// 삭제 처리
+	// 업로드 시 삭제 처리
 	@RequestMapping(value="/deleteFile", method = RequestMethod.POST)
 	public ResponseEntity<String> deleteFile(String fileName){
 		
@@ -93,6 +103,42 @@ public class UploadController {
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 		
 	}
+	// 목록
+	@RequestMapping(value = "/list/{bno}", method = RequestMethod.GET)
+	public ResponseEntity<List<String>> listFiles(@PathVariable("bno") int bno){
+		ResponseEntity<List<String>> entity = null;
+		try {
+			List<String> listFiles = fileService.listFiles(bno);
+			entity = new ResponseEntity<>(listFiles, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
+	// 파일 전체 삭제
+	@RequestMapping(value = "/deleteAll", method = RequestMethod.POST)
+	public ResponseEntity<String> deleteAll(@RequestParam("files[]") String[] files, HttpServletRequest request){
+		
+		if(files == null || files.length == 0)
+			return new ResponseEntity<>("DELETE",HttpStatus.OK);
+		
+		ResponseEntity<String> entity = null;
+		
+			for (String fileName : files) {
+				String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+				
+				MediaType mType = MediaUtils.getMediaType(formatName);
+				
+				if(mType != null) {
+					String front = fileName.substring(0,12);
+					String end = fileName.substring(14);
+					new File(uploadPath + (front+end).replace('/', File.separatorChar)).delete();
+				}
+				new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+			}	
+			return new ResponseEntity<String>("DELETE", HttpStatus.OK);
+	}
 	
 }

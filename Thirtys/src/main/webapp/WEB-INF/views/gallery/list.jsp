@@ -43,7 +43,7 @@
 						<c:when test="${boardVO.state == 'R'}">
 							<tr>
 								<td>${boardVO.bno}</td>
-								<td><a href="${path}/board/readPage${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${boardVO.bno}">${boardVO.title}</a>
+								<td><a href="${path}/gallery/read${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${boardVO.bno}">${boardVO.title}</a>
 									<span style="color:#FF0080;">[${boardVO.replycnt}]</span>
 								</td>
 								<td>${boardVO.writer}</td>

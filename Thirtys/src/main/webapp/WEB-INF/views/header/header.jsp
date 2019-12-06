@@ -3,7 +3,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <meta charset="UTF-8">
 <!-- 웹 폰트 -->
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gugi&display=swap" rel="stylesheet">
 <!-- css -->
 <link rel="stylesheet" href="<c:url value="/resources/css/reset.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
@@ -17,7 +17,7 @@
 				<a href="${path}/user/join" style="color: #3d449c;">회원가입</a>
 				</c:if>
 				<c:if test="${not empty login}">
-				<a href="${path}/user/info">${login.uname}님(${login.uid})</a>
+				<a href="${path}/user/info?uid=${login.uid}">${login.uname}님(${login.uid})</a>
 				<a href="${path}/user/logout">로그아웃</a>
 				</c:if>
 			</div>
@@ -26,4 +26,5 @@
 </div>
 
 <script src="${path}/resources/js/jquery.min_1.12.4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <!-- //header -->

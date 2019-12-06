@@ -18,7 +18,7 @@
 			</div>
 			<div class="write-body">
 				<div class="write">
-				<form role="form" id="writeForm" method="post" action="${path}/board/write">
+				<form role="form" id="writeForm" method="post" action="${path}/gallery/write">
 					<div class="w-writer">
 						<input type="text" id="writer" name="writer" >
 					</div>
@@ -84,9 +84,6 @@ $(".fileDrop").on("drop", function(event){
 	});
 });
 
- function fileSubmit(that) {
-	
-} 
 
  $("#writeForm").submit(function(event){
 	event.preventDefault();

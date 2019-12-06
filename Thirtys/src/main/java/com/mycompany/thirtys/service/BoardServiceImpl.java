@@ -59,11 +59,13 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.modify(boardVO);
 
 	}
-
+	
+	@Transactional
 	@Override
 	public void delete(int bno) throws Exception {
+		fileDAO.deleteFiles(bno);
 		boardDAO.delete(bno);
-
+		
 	}
 
 	/*

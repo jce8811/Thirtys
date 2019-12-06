@@ -40,4 +40,12 @@
 		WHERE uid = #{uid}
 	</update>
 	
+	<!-- 내 정보 보기 -->
+	<select id="info" resultType="UserVO">
+		SELECT uid,uemail,udate,upoint
+		FROM tbl_user
+		WHERE uid = #{uid}
+	</select>
+	
+	
 </mapper>

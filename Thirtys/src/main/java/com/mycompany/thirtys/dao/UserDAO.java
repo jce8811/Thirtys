@@ -18,4 +18,7 @@ public interface UserDAO {
 	
 	String checkId(String uid, String uemail) throws Exception;
 	void modifyPw(UserVO userVO) throws Exception;
+	UserVO info(String uid) throws Exception;
+	int findPw(UserVO userVO) throws Exception;
+	void sendEmail(UserVO userVo, String div) throws Exception;
 }

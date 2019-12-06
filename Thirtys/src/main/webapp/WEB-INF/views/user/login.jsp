@@ -32,7 +32,7 @@
 						</label>
 					</p>
 					<div class="find">
-						<a>아이디 비밀번호 찾기</a>
+						<a href="${path}/user/findIdPw">아이디 비밀번호 찾기</a>
 					</div>
 				<div class="btn">
 						<button class="btn-join" type="submit">로그인</button>

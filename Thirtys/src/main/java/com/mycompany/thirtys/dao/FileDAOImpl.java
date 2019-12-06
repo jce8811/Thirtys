@@ -1,5 +1,7 @@
 package com.mycompany.thirtys.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,6 +24,17 @@ public class FileDAOImpl implements FileDAO {
 	public void addFile(String fullname) throws Exception {
 		System.out.println(fullname);
 		session.insert(namespace + ".addFile", fullname);
+	}
+
+	@Override
+	public List<String> listFiles(int bno) throws Exception {
+		return session.selectList(namespace + ".listFiles", bno); 
+	}
+
+	@Override
+	public void deleteFiles(int bno) throws Exception {
+		session.delete(namespace + ".deleteFiles", bno);
+		
 	}
 
 }

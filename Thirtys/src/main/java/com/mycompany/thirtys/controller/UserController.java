@@ -1,19 +1,21 @@
 package com.mycompany.thirtys.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mycompany.thirtys.service.UserService;
+import com.mycompany.thirtys.vo.LoginDTO;
 import com.mycompany.thirtys.vo.UserVO;
 
 @Controller
@@ -51,7 +53,7 @@ public class UserController {
 	// 회원정보 페이지
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public void infoGET(String uid, Model model) throws Exception {
-		model.addAttribute("userVo", uid);
+		model.addAttribute("userVO", userService.info(uid));
 		logger.info("info GET");
 		
 	}
@@ -79,10 +81,23 @@ public class UserController {
 		
 		return "redirect:/user/logout";
 	}
+	
 	// 내가 쓴글 페이지
 	@RequestMapping(value = "/mywrite", method = RequestMethod.GET)
 	public void mywriteGET() throws Exception {
 		
 		logger.info("mywrite GET");
 	}
+	// 아이디&비밀번호 찾기 페이지
+		@RequestMapping(value="/findIdPw", method = RequestMethod.GET)
+		public void findIdPw() throws Exception {
+			logger.info("findIdPw GET");
+		}
+	// 아이디&비밀번호 찾기 페이지
+	@RequestMapping(value="/findIdPwPOST", method = RequestMethod.POST)
+	public void findIdPw(@ModelAttribute UserVO userVO, HttpServletResponse response) throws Exception {
+		logger.info("findIdPw POST");
+		userService.findIdPw(userVO, response);
+	}
+	
 }

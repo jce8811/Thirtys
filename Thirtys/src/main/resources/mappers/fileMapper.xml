@@ -7,5 +7,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addFile">
 		INSERT INTO tbl_file(fullname, bno)
 		VALUES (#{fullname}, last_insert_id())
-	</insert>	
+	</insert>
+	
+	<select id="listFiles" resultType="string">
+		SELECT fullname
+		FROM tbl_file
+		WHERE bno = #{bno}
+		ORDER BY regdate
+	</select>
+	
+	<delete id="deleteFiles">
+		DELETE FROM tbl_file
+		WHERE bno = #{bno}
+	</delete>	
 </mapper>
