@@ -34,6 +34,8 @@
 	</beans:bean>
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	
 	<!-- Interceptor -->
 	<beans:bean id="LoginInterceptor" class="com.mycompany.thirtys.commons.LoginInterceptor"/>
 	<beans:bean id="AuthInterceptor" class="com.mycompany.thirtys.commons.AuthInterceptor"/>

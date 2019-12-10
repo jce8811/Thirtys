@@ -43,8 +43,7 @@ public class UserServiceImpl implements UserService {
 		return userDAO.checkId(uid, uemail);
 		
 	}
-
-	@Transactional
+	
 	@Override
 	public void modifyPw(UserVO userVO) throws Exception {
 		userDAO.modifyPw(userVO);
@@ -54,18 +53,14 @@ public class UserServiceImpl implements UserService {
 		return userDAO.info(uid);
 	}
 	@Override
-	public void findIdPw(UserVO userVO, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html);charset=utf-8");
-		if(userVO.getUemail() != null) {
-			String upw = "";
-			for(int i = 0; i < 12; i++) {
-				upw += (char) ((Math.random() * 26)+97);
-			}
-			userVO.setUpw(upw);
-			modifyPw(userVO);
-			userDAO.sendEmail(userVO, "findIdPw");
-		}
+	public void findIdPw(UserVO userVO) throws Exception {
+		userDAO.findIdPw(userVO);
 		
 	}
+	@Override
+	public String findId(String uid) throws Exception {
+		return userDAO.findId(uid);
+	}
+	
 
 }

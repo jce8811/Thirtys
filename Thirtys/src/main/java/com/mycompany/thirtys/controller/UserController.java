@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mycompany.thirtys.commons.MailUtils;
 import com.mycompany.thirtys.service.UserService;
 import com.mycompany.thirtys.vo.LoginDTO;
 import com.mycompany.thirtys.vo.UserVO;
@@ -77,6 +78,7 @@ public class UserController {
 		String hashedPw = BCrypt.hashpw(userVO.getUpw(), BCrypt.gensalt());
 		userVO.setUpw(hashedPw);
 		userService.modifyPw(userVO);
+		System.out.println(userVO);
 		rttr.addFlashAttribute("msg", "Msuccess");
 		
 		return "redirect:/user/logout";
@@ -89,15 +91,29 @@ public class UserController {
 		logger.info("mywrite GET");
 	}
 	// 아이디&비밀번호 찾기 페이지
-		@RequestMapping(value="/findIdPw", method = RequestMethod.GET)
-		public void findIdPw() throws Exception {
-			logger.info("findIdPw GET");
-		}
-	// 아이디&비밀번호 찾기 페이지
-	@RequestMapping(value="/findIdPwPOST", method = RequestMethod.POST)
-	public void findIdPw(@ModelAttribute UserVO userVO, HttpServletResponse response) throws Exception {
+	@RequestMapping(value="/findIdPw", method = RequestMethod.GET)
+	public void findIdPw() throws Exception {
+		logger.info("findIdPw GET");
+	}
+	
+	// 아이디&비밀번호 찾기 
+	@RequestMapping(value="/findIdPw", method = RequestMethod.POST)
+	public String sendEmail(String uemail, String uid, UserVO userVO, HttpSession session) throws Exception {
 		logger.info("findIdPw POST");
-		userService.findIdPw(userVO, response);
+		String newPw = MailUtils.newPw();
+		uid = userService.findId(uemail);
+		userVO.setUpw(newPw);
+		userService.findIdPw(userVO);
+		String subject = "30's의 아이디와 비밀번호 입니다.";
+		
+		String msg = "";
+			   msg += "<div style='border:1px solid black;'>";
+			   msg += "아이디와 임시비밀번호 입니다.";
+			   msg += "<strong>" + uid + newPw + "</strong>";
+			   msg += "</div>";
+		MailUtils.sendEmail(uemail, subject, msg);	   
+		
+		return "success";
 	}
 	
 }

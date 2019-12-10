@@ -17,7 +17,7 @@
 				<h2 style="font-size:24px;">이메일 확인</h2>
 			</div>	
 				<div class="user-body">
-					<form class="user-form" action="${path}/user/findIdPwPOST", method="post">
+					<form class="user-form" action="${path}/user/findIdPw", method="post">
 						<h3 style="font-size:30px;">아이디&이메일 확인</h3>
 						<fieldset>
 							<input type="email" name="uemail" class="uemail" placeholder="이메일을 입력하세요." style="border-top:1px solid #b9b9b9">

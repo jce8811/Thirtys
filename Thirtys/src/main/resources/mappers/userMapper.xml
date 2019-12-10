@@ -40,9 +40,21 @@
 		WHERE uid = #{uid}
 	</update>
 	
+	<!-- 이메일로 찾기 (아이디, 임시비밀번호 변경)-->
+	<update id="findIdPw">
+		UPDATE tbl_user
+		SET upw = #{upw}
+		WHERE uemail = #{uemail}
+	</update>
+	<select id="findId" resultType="String">
+		SELECT uid
+		FROM tbl_user
+		WHERE uemail = #{uemail}
+	</select>
+	
 	<!-- 내 정보 보기 -->
 	<select id="info" resultType="UserVO">
-		SELECT uid,uemail,udate,upoint
+		SELECT uid, uemail, udate, upoint
 		FROM tbl_user
 		WHERE uid = #{uid}
 	</select>

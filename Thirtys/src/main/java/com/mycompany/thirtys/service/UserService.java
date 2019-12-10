@@ -15,6 +15,7 @@ public interface UserService {
 	UserVO checkWithSessionKey(String value);
 	String checkId(String uid, String uemail) throws Exception;
 	void modifyPw(UserVO userVO) throws Exception;
+	String findId(String uid) throws Exception;
 	UserVO info(String uid) throws Exception;
-	void findIdPw(UserVO userVO, HttpServletResponse response) throws Exception;
+	void findIdPw(UserVO userVO) throws Exception;
 }

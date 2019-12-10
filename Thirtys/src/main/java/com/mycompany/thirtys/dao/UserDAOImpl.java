@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.apache.commons.mail.HtmlEmail;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -72,53 +71,15 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public int findPw(UserVO userVO) throws Exception {
-		return session.update(namespace + ".findPw", userVO);
+	public int findIdPw(UserVO userVO) throws Exception {
+		return session.update(namespace + ".findIdPw", userVO);
 	}
 
 	@Override
-	public void sendEmail(UserVO userVO, String div) throws Exception {
-		
-		String charSet = "utf-8";
-		String hostSMTP = "smtp.naver.com";
-		String hostSMTPid = "emma463@naver.com";
-		String hostSMTPpwd = "tlsfkaus2516a";
-		
-		// 보내는 사람 email, 제목, 내용
-		String fromEmail = "emma463@naver.com";
-		String fromName = "30's에서 보내드립니다.";
-		String subject = "";
-		String msg = "";
-		
-		if(div.equals("findIdPw")){
-			subject = "임시 비밀번호 입니다.";
-			msg += "<div align = 'center' style='border:1px solid black;'>";
-			msg += userVO.getUid();
-			msg += "<p>임시 비밀번호 :";
-			msg += userVO.getUpw();
-		}
-		// 받는 사람 E-Mail 주소
-		String mail = userVO.getUemail();
-		try {
-			HtmlEmail email = new HtmlEmail();
-			email.setDebug(true);
-			email.setCharset(charSet);
-			email.setSSL(true);
-			email.setHostName(hostSMTP);
-			email.setSmtpPort(587);
-
-			email.setAuthentication(hostSMTPid, hostSMTPpwd);
-			email.setTLS(true);
-			email.addTo(mail, charSet);
-			email.setFrom(fromEmail, fromName, charSet);
-			email.setSubject(subject);
-			email.setHtmlMsg(msg);
-			email.send();
-		} catch (Exception e) {
-			System.out.println("메일발송 실패 : " + e);
-		}
-				
+	public String findId(String uid) throws Exception {
+		return session.selectOne(namespace + ".findId", uid);
 	}
+
 		
 
 	
