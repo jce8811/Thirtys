@@ -123,10 +123,10 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 });
+$(document).ready(function(){
 var bno = ${boardVO.bno};
 var replyPageNum = 1;
-getPageList(1);
-$(document).ready(function(){
+getPageList(1);	
 //댓글 목록 출력 함수
 /* function getAllList(){
 	$.getJSON("/reply/all/" + bno, function(data){

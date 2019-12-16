@@ -17,7 +17,8 @@
 				<a href="${path}/user/join" style="color: #3d449c;">회원가입</a>
 				</c:if>
 				<c:if test="${not empty login}">
-				<a href="${path}/user/info?uid=${login.uid}">${login.uname}님(${login.uid})</a>
+				<%-- <a href="${path}/user/info?uid=${login.uid}">${login.uname}님(${login.uid})</a> --%>
+				<a href="${path}/admin/admin_Page">${login.uname}님(${login.uid})</a>
 				<a href="${path}/user/logout">로그아웃</a>
 				</c:if>
 			</div>

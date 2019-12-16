@@ -15,8 +15,8 @@ public interface BoardService {
 	void delete(int bno) throws Exception;
 
 	/* List<BoardVO> list() throws Exception; */
-	List<BoardVO> listCriteria(Criteria cri) throws Exception;
-	int listCountCriteria(Criteria cri) throws Exception;
+	//List<BoardVO> listCriteria(Criteria cri) throws Exception;
+	//int listCountCriteria(Criteria cri) throws Exception;
 	List<BoardVO> listSearchCriteria(SearchCriteria scri) throws Exception;
 	int listSearchCount(SearchCriteria scri) throws Exception;
 }

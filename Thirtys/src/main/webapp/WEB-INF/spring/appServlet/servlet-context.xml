@@ -47,7 +47,6 @@
 			<mapping path="/user/loginPOST"/>
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
-		
 		<interceptor>
 			<mapping path="/board/write"/>
 			<mapping path="/board/modifyPage"/>
@@ -63,6 +62,10 @@
 		<interceptor>
 			<mapping path="/user/login"/>
 			<mapping path="/user/join"/>
+			<beans:ref bean="LoginAfterInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin/login"/>
 			<beans:ref bean="LoginAfterInterceptor"/>
 		</interceptor>
 		

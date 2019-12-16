@@ -74,15 +74,13 @@ public class BoardServiceImpl implements BoardService {
 	 * return boardDAO.list(); }
 	 */
 
-	@Override
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-		return boardDAO.listCriteria(cri);
-	}
-
-	@Override
-	public int listCountCriteria(Criteria cri) throws Exception {
-		return boardDAO.countPaging(cri);
-	}
+	/*
+	 * @Override public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+	 * return boardDAO.listCriteria(cri); }
+	 * 
+	 * @Override public int listCountCriteria(Criteria cri) throws Exception {
+	 * return boardDAO.countPaging(cri); }
+	 */
 
 	@Override
 	public List<BoardVO> listSearchCriteria(SearchCriteria scri) throws Exception {

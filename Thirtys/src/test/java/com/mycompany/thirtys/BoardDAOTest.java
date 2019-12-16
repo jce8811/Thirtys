@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.mycompany.thirtys.dao.BoardDAO;
 import com.mycompany.thirtys.vo.BoardVO;
 import com.mycompany.thirtys.vo.Criteria;
+import com.mycompany.thirtys.vo.SearchCriteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
@@ -57,9 +58,11 @@ public class BoardDAOTest {
 	@Test
 	public void testListPage() throws Exception{
 		
-		int page = 3;
+		SearchCriteria scri = new SearchCriteria();
+		scri.setPage(3);
+		scri.setPerPageNum(20);
 		
-		List<BoardVO> list = boardDAO.listPage(page);
+		List<BoardVO> list = boardDAO.listSearch(scri);
 		
 		for(BoardVO boardVO : list) {
 			logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
@@ -69,11 +72,11 @@ public class BoardDAOTest {
 	@Test
 	public void testListCriteria() throws Exception{
 		
-		Criteria cri = new Criteria();
-		cri.setPage(3);
-		cri.setPerPageNum(20);
+		SearchCriteria scri = new SearchCriteria();
+		scri.setPage(3);
+		scri.setPerPageNum(20);
 		
-		List<BoardVO> list = boardDAO.listCriteria(cri);
+		List<BoardVO> list = boardDAO.listSearch(scri);
 				
 		for(BoardVO boardVO : list) {
 			logger.info(boardVO.getBno() + ":" + boardVO.getTitle());

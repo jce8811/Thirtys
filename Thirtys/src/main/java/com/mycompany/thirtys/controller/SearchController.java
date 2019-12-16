@@ -132,15 +132,15 @@ public class SearchController {
 		return "redirect:/board/list";
 	}
 
-	@RequestMapping(value="/ex", method = RequestMethod.GET)
-	public void form() throws Exception{
-	}
-	
-	@RequestMapping(value="/submit", method = RequestMethod.POST)
-	public String submit(HttpServletRequest request, Model model) throws Exception{
-	    model.addAttribute("text",request.getParameter("text"));
-	    return "board/submit";
-	}
+	/*
+	 * @RequestMapping(value="/ex", method = RequestMethod.GET) public void form()
+	 * throws Exception{ }
+	 * 
+	 * @RequestMapping(value="/submit", method = RequestMethod.POST) public String
+	 * submit(HttpServletRequest request, Model model) throws Exception{
+	 * model.addAttribute("text",request.getParameter("text")); return
+	 * "board/submit"; }
+	 */
 
 	
 }

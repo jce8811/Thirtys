@@ -25,10 +25,10 @@
 			</div>
 			<div class="user-body">
 				<form class="user-form" action="${path}/user/loginPOST" method="post">
-					<h3>Guest L O G I N</h3>
+					<h3>Admin L O G I N</h3>
 					<fieldset>
-						<input type="text" name="uid" class="uid" placeholder="아이디">
-						<input type="password" name="upw" class="upw" placeholder="비밀번호">
+						<input type="text" name="uid" class="uid" placeholder="아이디" >
+						<input type="password" name="upw" class="upw" placeholder="비밀번호" >
 					</fieldset>
 					
 					<p class="checkbox" style="margin-top: 15px;">
@@ -37,12 +37,8 @@
 							<span style="font-weight: 600;">로그인유지</span>
 						</label>
 					</p>
-					<div class="find">
-						<a href="${path}/user/findIdPw">아이디 비밀번호 찾기</a>
-					</div>
 				<div class="btn">
 						<button class="btn-join" type="submit">로그인</button>
-						<a href="${path}/user/join" class="btn-back">회원가입</a>
 					</div>	
 				</form>	
 			</div>

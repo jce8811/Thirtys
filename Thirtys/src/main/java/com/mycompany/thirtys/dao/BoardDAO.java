@@ -19,9 +19,9 @@ public interface BoardDAO {
 	/* 글리스트 */
 	/* List<BoardVO> list() throws Exception; */
 	/* 페이징 */
-	List<BoardVO> listPage(int page) throws Exception;
-	List<BoardVO> listCriteria(Criteria cri) throws Exception;
-	int countPaging(Criteria cri) throws Exception;
+	//List<BoardVO> listPage(int page) throws Exception;
+	//List<BoardVO> listCriteria(Criteria cri) throws Exception;
+	//int countPaging(Criteria cri) throws Exception;
 	List<BoardVO> listSearch(SearchCriteria scri) throws Exception;
 	int countSearchPaging(SearchCriteria scri) throws Exception;
 	void updateReplyCnt(int bno, int amount) throws Exception;
